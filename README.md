@@ -1,6 +1,8 @@
 # PDV - CodeQueens 👑
 
-Esse projeto marca a etapa final do curso de Desenvolvimento de Software com ênfase em Back-End, oferecido pela <a href="https://cubos.academy/?utm_term=cubos%20academy&utm_campaign=Conversion+-+Search+-+Branding+-+Cubos+Academy&utm_source=google&utm_medium=cpc&hsa_acc=6320525513&hsa_cam=18154121427&hsa_grp=141084695032&hsa_ad=618464016440&hsa_src=g&hsa_tgt=kwd-1212716925774&hsa_kw=cubos%20academy&hsa_mt=e&hsa_net=adwords&hsa_ver=3&gclid=CjwKCAjwyY6pBhA9EiwAMzmfwZznm0pCci8QyZMBU_L5s_fvzJaukZDPH-qlJGh8Zg6eT7xi21ozyBoCLfkQAvD_BwE">Cubos Academy</a>.
+Esse projeto marca a etapa final do curso de Desenvolvimento de Software com ênfase em Back-End, oferecido pela <a href="https://cubos.academy/?utm_term=cubos%20academy&utm_campaign=Conversion+-+Search+-+Branding+-+Cubos+Academy&utm_source=google&utm_medium=cpc&hsa_acc=6320525513&hsa_cam=18154121427&hsa_grp=141084695032&hsa_ad=618464016440&hsa_src=g&hsa_tgt=kwd-1212716925774&hsa_kw=cubos%20academy&hsa_mt=e&hsa_net=adwords&hsa_ver=3&gclid=CjwKCAjwyY6pBhA9EiwAMzmfwZznm0pCci8QyZMBU_L5s_fvzJaukZDPH-qlJGh8Zg6eT7xi21ozyBoCLfkQAvD_BwE">Cubos Academy</a> em parceria com o <a href="https://www.ifood.com.br">iFood</a>.
+
+### Link do deploy:  <a>https://clumsy-slug-earmuffs.cyclic.cloud</a>
 
 ## Equipe: 
 
@@ -14,11 +16,14 @@ Esse projeto marca a etapa final do curso de Desenvolvimento de Software com ên
 
 - <a href="https://www.linkedin.com/in/polianams/">Poliana Santos</a>
 
+---
 
+<details>
+<summary><b> 1ª Sprint </b></summary>
+<br>
 
-
-
-## Escopo do projeto
+<details>
+<summary><b> Escopo do projeto</b></summary>
 
 ### O que o usuário não logado poderá fazer:
 
@@ -26,13 +31,43 @@ Esse projeto marca a etapa final do curso de Desenvolvimento de Software com ên
 - Cadastrar usuário;
 - Efetuar login.
 
+
 ### O que o usuário logado poderá fazer:
 
 - Detalhar perfil do usuário, ou seja, visualizar os dados do seu perfil;
 - Editar/Atualizar informações do perfil.
 
+---
+<br/>
 
+**Importante 1:** Sempre que a validação de uma requisição falhar, responder com código de erro e mensagem adequada à situação.
 
+**Importante 2:** Para endpoints de cadastro/atualização os objetos de requisição devem conter as propriedades equivalentes as colunas das tabelas.
+
+**Exemplo:**
+
+```javascript
+// Corpo da requisição para cadastro de usuário (body)
+{
+    "nome": "José",
+    "email": "jose@email.com",
+    "senha": "jose"
+}
+```
+## **Status Codes**
+
+Possíveis **_status codes_** esperados como resposta da API.
+
+```javascript
+// 200 (OK) = requisição bem sucedida
+// 201 (Created) = requisição bem sucedida e algo foi criado
+// 204 (No Content) = requisição bem sucedida, sem conteúdo no corpo da resposta
+// 400 (Bad Request) = o servidor não entendeu a requisição pois está com uma sintaxe/formato inválido
+// 401 (Unauthorized) = o usuário não está autenticado (logado)
+// 403 (Forbidden) = o usuário não tem permissão de acessar o recurso solicitado
+// 404 (Not Found) = o servidor não pode encontrar o recurso solicitado
+// 500 (Internal Server Error) = erro inesperado do servidor
+```
 ## Banco de Dados:
 
 - Criar um banco de dados PostGreSQL chamado `pdv`.
@@ -40,21 +75,21 @@ Esse projeto marca a etapa final do curso de Desenvolvimento de Software com ên
 
 ### 1 - Tabela de usuários:
 
-- id (autoincremento);
+- **id** (autoincremento);
 
-- nome (texto);
+- **nome** (texto);
 
-- email (campo único);
+- **email** (campo único);
 
-- senha (texto).
+- **senha** (texto).
 
 ### 2 - Tabela de categorias:
 
-- id (autoincremento);
+- **id** (autoincremento);
 
-- descrição (texto);
+- **descrição** (texto);
 
-- cadastrar categorias na tabela.
+- Cadastrar categorias na tabela.
 
 ## Endpoints
 
@@ -76,13 +111,13 @@ Esse projeto marca a etapa final do curso de Desenvolvimento de Software com ên
 
 Os dados serão enviados por requisição por meio do body:
 
-- nome;
-- email;
-- senha.
+- **nome**;
+- **email**;
+- **senha**.
 
 ### Dados retornados:
 
-- sucesso / erro.
+- Sucesso / erro.
 
 ### Objetivos Gerais
 
@@ -99,13 +134,13 @@ Os dados serão enviados por requisição por meio do body:
 
 Os dados serão enviados por requisição por meio do body:
 
-- email;
-- senha.
+- **email**;
+- **senha**.
 
 ### Dados retornados:
 
-- sucesso / erro;
-- nome, email e token.
+- Sucesso / erro;
+- **nome**, **email** e **token**.
 
 ### Objetivos Gerais
 
@@ -121,13 +156,13 @@ Os dados serão enviados por requisição por meio do body:
 
 ### Dados enviados:
 
-- token (que terá id do usuário logado);
+- **token** (que terá id do usuário logado);
 
 ### Dados retornados:
 
-- id;
-- nome;
-- email.
+- **id**;
+- **nome**;
+- **email**.
 
 ### Objetivos Gerais
 
@@ -140,19 +175,19 @@ Os dados serão enviados por requisição por meio do body:
 
 ### Dados enviados:
 
-- token (que terá id do usuário logado);
+- **token** (que terá id do usuário logado);
 
 #### Enviar os seguintes dados pelo body:
 
-- nome;
-- email;
-- senha.
+- **nome**;
+- **email**;
+- **senha**.
 
 ### Dados retornados:
 
-- id;
-- nome;
-- email.
+- **id**;
+- **nome**;
+- **email**.
 
 ### Objetivos Gerais
 
@@ -169,5 +204,8 @@ Os dados serão enviados por requisição por meio do body:
 
 - Fazer o deploy;
 - Disponibilizar a URL.
+
+</details>
+</details>
 
 ###### tags: `módulo 5` `desafio` `api` `node.js`
