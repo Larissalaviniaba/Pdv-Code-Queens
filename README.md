@@ -1,6 +1,8 @@
 # PDV - CodeQueens 👑
 
-Esse projeto marca a etapa final do curso de Desenvolvimento de Software com ênfase em Back-End, oferecido pela <a href="https://cubos.academy/?utm_term=cubos%20academy&utm_campaign=Conversion+-+Search+-+Branding+-+Cubos+Academy&utm_source=google&utm_medium=cpc&hsa_acc=6320525513&hsa_cam=18154121427&hsa_grp=141084695032&hsa_ad=618464016440&hsa_src=g&hsa_tgt=kwd-1212716925774&hsa_kw=cubos%20academy&hsa_mt=e&hsa_net=adwords&hsa_ver=3&gclid=CjwKCAjwyY6pBhA9EiwAMzmfwZznm0pCci8QyZMBU_L5s_fvzJaukZDPH-qlJGh8Zg6eT7xi21ozyBoCLfkQAvD_BwE">Cubos Academy</a>.
+Esse projeto marca a etapa final do curso de Desenvolvimento de Software com ênfase em Back-End, oferecido pela <a href="https://cubos.academy/?utm_term=cubos%20academy&utm_campaign=Conversion+-+Search+-+Branding+-+Cubos+Academy&utm_source=google&utm_medium=cpc&hsa_acc=6320525513&hsa_cam=18154121427&hsa_grp=141084695032&hsa_ad=618464016440&hsa_src=g&hsa_tgt=kwd-1212716925774&hsa_kw=cubos%20academy&hsa_mt=e&hsa_net=adwords&hsa_ver=3&gclid=CjwKCAjwyY6pBhA9EiwAMzmfwZznm0pCci8QyZMBU_L5s_fvzJaukZDPH-qlJGh8Zg6eT7xi21ozyBoCLfkQAvD_BwE">Cubos Academy</a> em parceria com o <a href="https://www.ifood.com.br">iFood</a>.
+
+### Link do deploy:  <a>https://clumsy-slug-earmuffs.cyclic.cloud</a>
 
 ## Equipe: 
 
