@@ -208,4 +208,4 @@ Os dados serão enviados por requisição por meio do body:
 </details>
 </details>
 
-###### tags: `módulo 5` `desafio` `api` `node.js`
+###### tags: `módulo 5` `desafio` `api` `ApiRest` `node.js`
