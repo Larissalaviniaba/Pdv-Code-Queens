@@ -8,8 +8,8 @@ async function criarUsuario(req, res) {
 
     if(erroDeValidacao) {
         return res.status(400).json({mensagem: erroDeValidacao})
-    }
-
+    } 
+ 
     let usuario = {
         nome: req.body.nome,
         email: req.body.email,
