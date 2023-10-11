@@ -13,8 +13,9 @@ module.exports = {
     // Rota categoria
 
     // Rota login
-    loginInvalido: 'Email ou senha inválida',
-    loginDadosInvalido: "Erro de Validação. É obrigatório informar E-mail e senha.",
+    loginInvalido: 'Email ou senha inválida.',
+    loginDadosInvalido: 'Erro de Validação. É obrigatório informar E-mail e senha.',
+    tokenInvalido: 'Para realizar o login do usúario o token deve ser enviado.',
 
     
 }
