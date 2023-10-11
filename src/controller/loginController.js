@@ -5,7 +5,7 @@ const erroMensagens = require("../constants/erroMensagens")
 const senhaJwt =require("../senhaJwt")
 
 
-const efatuarLogin = async(req, res) => {
+const efetuarLogin = async(req, res) => {
 
     try {
         const { email, senha } = req.body;
@@ -32,17 +32,18 @@ const efatuarLogin = async(req, res) => {
             expiresIn: '8h',
         })
 
-        const { senha:_, ...usuarioLogado } = usuario;
+        const { senha:_, ...loginUsuario } = usuario;
 
         return res.status(200).json({
-            usuarioLogado, token
+            ...loginUsuario, token
         })
 
         
     } catch (error) {
-        return res.status(500).json({ mensagem: erroMensagens.erroServidor } )
+        return res.status(500).json({ 
+            mensagem: erroMensagens.erroServidor } )
     }
 
 }
 
-module.exports = efatuarLogin
+module.exports = efetuarLogin

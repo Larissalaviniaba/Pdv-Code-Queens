@@ -21,7 +21,6 @@ const verificarUsuarioLogado = async (req, res, next) => {
 
         const usuario = await knex('usuarios').where('id', id).first()
 
-
         if(!usuario){
             return res.status(404).json({
                 mensagem: erroMensagens.tokenInvalido})
@@ -34,10 +33,9 @@ const verificarUsuarioLogado = async (req, res, next) => {
         next()
         
     } catch (error) {
-        console.log(error)
 
         return res.status(500).json({ 
-            mensagem: erroMensagens.erroServidor } )
+            mensagem: erroMensagens.tokenInvalido } )
     }
 
 

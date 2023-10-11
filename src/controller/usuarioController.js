@@ -44,13 +44,8 @@ async function cadastrarUsuario(usuario) {
 }
 
 
-const perfilUsuario = async (req, res) => {
-
-    // const { senha:_, ...usuarioLogado } = req.usuario;
-    return res.json(req.usuario)
-}
 
 module.exports = {
-    criarUsuario,
-    perfilUsuario
+    criarUsuario
+
 }
