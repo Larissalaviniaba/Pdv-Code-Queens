@@ -1,9 +1,9 @@
 DROP TABLE IF EXISTS categorias;
 
 CREATE TABLE categorias (
-  id serial primary key,
-  nome text,
-  descricao text
+  id SERIAL PRIMARY KEY,
+  nome TEXT,
+  descricao TEXT
 );
 
 INSERT INTO categorias (nome, descricao) 

@@ -8,6 +8,7 @@ module.exports = {
     usuarioErro: 'Usuário não pode ser criado!',
     usuarioNaoEncontrado: 'Usuário não encontrado.',
     usuarioJaExiste: 'Usuário já existe na nossa base de dados.',
+    usuarioCadastroDadosInvalido: "Erro de Validação. É obrigatório informar nome, E-mail e senha."
     
     // Rota categoria
 
