@@ -1,21 +1,28 @@
+const errosUsuario = {
+  usuarioErro: "Usuário não pode ser criado!",
+  usuarioNaoEncontrado: "Usuário não encontrado.",
+  usuarioJaExiste: "Usuário já existe na nossa base de dados.",
+  usuarioCadastroDadosInvalido: "É obrigatório informar nome, e-mail e senha.",
+};
+
+const errosLogin = {
+  loginInvalido: "E-mail ou senha inválidos.",
+  emailInvalido: "O campo e-mail precisa ter um formato válido.",
+  tamanhoMinimoSenha: "A senha precisar conter, no mínimo, cinco caracteres.",
+};
+
+const errosGerais = {
+  naoAutorizado: "Usuario não autenticado.",
+  erroServidor: "Erro interno do servidor.",
+  camposObrigatorios: "Todos os campos devem ser informados.",
+};
+
 module.exports = {
-
-    erroServidor: 'Erro interno do servidor.',
-    naoAutorizado: 'Para acessar este recurso um token de autenticação válido deve ser enviado.',
-    camposObrigatorios: 'Todos os campos devem ser informados.',
-
-    // Rota usuario
-    usuarioErro: 'Usuário não pode ser criado!',
-    usuarioNaoEncontrado: 'Usuário não encontrado.',
-    usuarioJaExiste: 'Usuário já existe na nossa base de dados.',
-    usuarioCadastroDadosInvalido: "Erro de Validação. É obrigatório informar nome, E-mail e senha.",
-    
-    // Rota categoria
-
-    // Rota login
-    loginInvalido: 'Email ou senha inválida.',
-    loginDadosInvalido: 'Erro de Validação. É obrigatório informar E-mail e senha.',
-    tokenInvalido: 'Usuario não autenticado',
-
-    
-}
+  usuarioErro: "Usuário não pode ser criado!",
+  usuarioNaoEncontrado: "Usuário não encontrado.",
+  usuarioJaExiste: "Usuário já existe na nossa base de dados.",
+  usuarioCadastroDadosInvalido: "É obrigatório informar nome, e-mail e senha.",
+  errosGerais,
+  errosLogin,
+  errosUsuario,
+};
