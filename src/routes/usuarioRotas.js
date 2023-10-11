@@ -8,4 +8,4 @@ rotas.get("/usuario", verificarUsuarioLogado);
 rotas.put("/usuario");
 
 module.exports = rotas;
- 
+
