@@ -3,30 +3,24 @@ const jwt = require("jsonwebtoken");
 const senhaJwt = require("../senhaJwt");
 const knex = require("../conexaoBanco");
 
-const erroMensagens = require("../constants/erroMensagens");
+const { errosGerais, errosLogin } = require("../constants/erroMensagens");
 
 const efetuarLogin = async (req, res) => {
   try {
     const { email, senha } = req.body;
 
-    if (!email.trim() || !senha.trim()) {
-      return res.status(400).json({
-        mensagem: erroMensagens.camposObrigatorios,
-      });
-    }
-
     const usuario = await knex("usuarios").where("email", email).first();
 
     if (!usuario) {
       return res.status(404).json({
-        mensagem: erroMensagens.loginInvalido,
+        mensagem: errosLogin.loginInvalido,
       });
     }
 
     const validarSenha = await bcrypt.compare(senha, usuario.senha);
 
     if (!validarSenha) {
-      return res.status(404).json({ mensagem: erroMensagens.loginInvalido });
+      return res.status(404).json({ mensagem: errosLogin.loginInvalido });
     }
 
     const token = jwt.sign({ id: usuario.id }, senhaJwt, {
@@ -41,7 +35,7 @@ const efetuarLogin = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      mensagem: erroMensagens.erroServidor,
+      mensagem: errosGerais.erroServidor,
     });
   }
 };

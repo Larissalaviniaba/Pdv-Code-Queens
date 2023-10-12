@@ -1,7 +1,10 @@
 const express = require("express");
 const rotas = express();
-const efetuarLogin = require("../controller/loginController")
 
-rotas.post("/login", efetuarLogin);
+const loginSchema = require("../schemas/loginSchema");
+const efetuarLogin = require("../controller/loginController");
+const validarRequisicao = require("../middleware/validarRequisicaoMiddleware");
+
+rotas.post("/login", validarRequisicao(loginSchema), efetuarLogin);
 
 module.exports = rotas;
