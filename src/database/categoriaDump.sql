@@ -1,18 +1,11 @@
 DROP TABLE IF EXISTS categorias;
 
-CREATE TABLE categorias (
-  id SERIAL PRIMARY KEY,
-  nome TEXT,
-  descricao TEXT
-);
+CREATE TABLE
+    categorias (
+        id SERIAL PRIMARY KEY,
+        descricao TEXT
+    );
 
-INSERT INTO categorias (nome, descricao) 
-VALUES ('Informática', 'Produtos eletrônicos e acessórios para computadores.'),
-('Celulares', 'Smartphones e acessórios relacionados.'),
-('Beleza e Perfumaria', 'Produtos de cuidados pessoais e fragrâncias.'),
-('Mercado', 'Itens de supermercado e necessidades básicas.'),
-('Livros e Papelaria', 'Livros e material de escrita.'),
-('Brinquedos', 'Brinquedos para crianças de todas as idades.'),
-('Games', 'Jogos eletrônicos e consoles.'),
-('Bebê', 'Produtos para cuidados com bebês.'),
-('Moda', 'Roupas, calçados e acessórios de moda.');
+INSERT INTO
+    categorias (descricao)
+VALUES ('Informática'), ('Celulares'), ('Beleza e Perfumaria'), ('Mercado'), ('Livros e Papelaria'), ('Brinquedos'), ('Games'), ('Bebê'), ('Moda');
