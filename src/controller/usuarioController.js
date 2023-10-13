@@ -1,49 +1,30 @@
 const bcrypt = require("bcrypt")
 const knex = require("../conexaoBanco")
-const erroMensagens = require("../constants/erroMensagens")
 const sucessoMensagens = require("../constants/sucessoMensagens")
+const {errosGerais, errosUsuario} = require("../constants/erroMensagens")
 
 async function criarUsuario(req, res) {
-    let erroDeValidacao = await validarRequisicao(req.body)
+    try {
+        const {nome, email, senha} = req.body
+        let buscaEmail = await knex('usuarios').where({email: email}).select('email').first()
 
-    if(erroDeValidacao) {
-        return res.status(400).json({mensagem: erroDeValidacao})
-    } 
- 
-    let usuario = {
-        nome: req.body.nome,
-        email: req.body.email,
-        senha: await criptografarSenha(req.body.senha)
+        if(buscaEmail !== undefined) {
+            return errosUsuario.usuarioJaExiste
+        }
+
+        const saltos = 10
+        const senhaCriptografada = await bcrypt.hash(senha, saltos)
+
+        let guardarNoBanco = await knex('usuarios').insert({nome: nome, email: email, senha: senhaCriptografada})
+
+        return res.status(201).json({mensagem:sucessoMensagens.usuarioSucesso})
+
+    } catch (error) {
+        console.log(error.message)
+        return res.status(500).json({mensagem: errosGerais.erroServidor})
     }
 
-    cadastrarUsuario(usuario)
-    res.status(201).json({mensagem: sucessoMensagens.usuarioSucesso}) // verificar se devemos utilizar .json ou .send
-    
 }
-
-async function validarRequisicao(body) {
-    if(!body.nome || !body.email || !body.senha) {
-        return erroMensagens.usuarioCadastroDadosInvalido
-    }
-
-    let resultado = await knex('usuarios').where({email: body.email}).select('email').first()
-
-    if(resultado !== undefined) {
-        return erroMensagens.usuarioJaExiste
-    }
-}
-
-async function criptografarSenha(senha) {
-    const rounds = 10
-    const senhacriptografada = await bcrypt.hash(senha, rounds)
-    return senhacriptografada
-}
-
-async function cadastrarUsuario(usuario) {
-    let guardarNoBanco = await knex('usuarios').insert({nome: usuario.nome, email: usuario.email, senha: usuario.senha})
-}
-
-
 
 module.exports = {
     criarUsuario
