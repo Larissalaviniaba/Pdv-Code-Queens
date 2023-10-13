@@ -29,6 +29,4 @@ async function criarUsuario(req, res) {
   }
 }
 
-module.exports = {
-  criarUsuario,
-};
+module.exports = criarUsuario;
