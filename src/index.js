@@ -10,11 +10,7 @@ const loginRotas = require("./routes/loginRotas");
 const categoriaRotas = require("./routes/categoriaRotas");
 
 app.use(express.json(), cors());
-app.use(
-    usuarioRotas, 
-    loginRotas, 
-    categoriaRotas
-);
+app.use(usuarioRotas, loginRotas, categoriaRotas);
 
 app.listen(porta, () => {
   console.log(`O servidor está rodando em ${url}`);

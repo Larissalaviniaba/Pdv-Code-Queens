@@ -1,6 +1,6 @@
 const joi = require("joi");
 
-const {errosGerais} = require("../constants/erroMensagens");
+const { errosGerais } = require("../constants/erroMensagens");
 
 const loginSchema = joi.object({
   email: joi.string().email().required().messages({
