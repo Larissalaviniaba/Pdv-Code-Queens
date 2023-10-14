@@ -1,10 +1,6 @@
-module.exports = {
-    // /usuario
-    usuarioSucesso: 'Usuário foi criado com sucesso!',
-    usuarioAtualizado: 'Usuário foi atualizado com sucesso!',
+const sucessoUsuario = {
+  usuarioSucesso: "Usuário foi criado com sucesso!",
+  atualizacaoSucesso: "Usuário foi atualizado com sucesso!",
+};
 
-    // /categoria
-
-    // /login
-    loginSucesso: 'Usuário logado sucesso!'
-}
+module.exports = sucessoUsuario;

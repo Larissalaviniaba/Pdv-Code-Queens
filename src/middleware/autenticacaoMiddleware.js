@@ -8,7 +8,7 @@ const verificarUsuarioLogado = async (req, res, next) => {
 
   if (!authorization) {
     return res.status(400).json({
-      mensagem: errosGerais.naoAutorizado, // estava naoAutenticado, porem não existe a variável com essa mensagem, alterado para naoAutorizado
+      mensagem: errosGerais.naoAutorizado,
     });
   }
 

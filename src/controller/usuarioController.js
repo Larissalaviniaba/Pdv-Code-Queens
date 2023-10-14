@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const knex = require("../conexaoBanco");
-const sucessoMensagens = require("../constants/sucessoMensagens");
+
+const sucessoUsuario = require("../constants/sucessoMensagens");
 const { errosGerais, errosUsuario } = require("../constants/erroMensagens");
 
 async function criarUsuario(req, res) {
@@ -23,11 +24,11 @@ async function criarUsuario(req, res) {
       senha: senhaCriptografada,
     });
 
-    return res.status(201).json({ mensagem: sucessoMensagens.usuarioSucesso });
+    return res.status(201).json({ mensagem: sucessoUsuario.usuarioSucesso });
   } catch (error) {
     return res.status(500).json({ mensagem: errosGerais.erroServidor });
   }
-};
+}
 
 async function detalharPerfil(req, res) {
   try {
@@ -35,36 +36,37 @@ async function detalharPerfil(req, res) {
   } catch (error) {
     return res.status(500).json({ mensagem: errosGerais.erroServidor });
   }
-};
+}
 
 async function editarPerfil(req, res) {
   const { nome, email, senha } = req.body;
 
   try {
-    const encontrarEmail = await knex('usuarios')
-      .select('id')
-      .where('email', email)
-      .where('id', '<>', req.usuario.id);
+    const encontrarEmail = await knex("usuarios")
+      .select("id")
+      .where("email", email)
+      .where("id", "<>", req.usuario.id);
 
     if (encontrarEmail.length >= 1) {
-      return res.status(400).json({ mensagem: errosUsuario.usuarioEmailJaExiste });
-    };
+      return res.status(400).json({ mensagem: errosUsuario.usuarioJaExiste });
+    }
 
     const senhaCriptografada = await bcrypt.hash(senha, 10);
 
-    await knex('usuarios')
-      .where('id', req.usuario.id)
-      .update({
-        nome: nome,
-        email: email,
-        senha: senhaCriptografada
-      });
+    await knex("usuarios").where("id", req.usuario.id).update({
+      nome: nome,
+      email: email,
+      senha: senhaCriptografada,
+    });
 
-    res.status(201).json({ mensagem: sucessoMensagens.usuarioAtualizado })
-
+    res.status(201).json({ mensagem: sucessoUsuario.atualizacaoSucesso });
   } catch (error) {
-    return res.status(500).json({ mensagem: erroMensagens.errosGerais.erroServidor });
-  };
-};
+    return res.status(500).json({ mensagem: errosGerais.erroServidor });
+  }
+}
 
-module.exports = { criarUsuario, detalharPerfil, editarPerfil };
+module.exports = {
+  criarUsuario,
+  detalharPerfil,
+  editarPerfil,
+};

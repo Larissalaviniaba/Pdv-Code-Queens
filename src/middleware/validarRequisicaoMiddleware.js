@@ -1,5 +1,3 @@
-const { errosGerais } = require("../constants/erroMensagens");
-
 const validarRequisicao = (joiSchema) => async (req, res, next) => {
   try {
     await joiSchema.validateAsync(req.body);
