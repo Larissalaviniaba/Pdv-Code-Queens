@@ -27,6 +27,44 @@ async function criarUsuario(req, res) {
   } catch (error) {
     return res.status(500).json({ mensagem: errosGerais.erroServidor });
   }
-}
+};
 
-module.exports = criarUsuario;
+async function detalharPerfil(req, res) {
+  try {
+    return res.status(201).json(req.usuario);
+  } catch (error) {
+    return res.status(500).json({ mensagem: errosGerais.erroServidor });
+  }
+};
+
+async function editarPerfil(req, res) {
+  const { nome, email, senha } = req.body;
+
+  try {
+    const encontrarEmail = await knex('usuarios')
+      .select('id')
+      .where('email', email)
+      .where('id', '<>', req.usuario.id);
+
+    if (encontrarEmail.length >= 1) {
+      return res.status(400).json({ mensagem: errosUsuario.usuarioEmailJaExiste });
+    };
+
+    const senhaCriptografada = await bcrypt.hash(senha, 10);
+
+    await knex('usuarios')
+      .where('id', req.usuario.id)
+      .update({
+        nome: nome,
+        email: email,
+        senha: senhaCriptografada
+      });
+
+    res.status(201).json({ mensagem: sucessoMensagens.usuarioAtualizado })
+
+  } catch (error) {
+    return res.status(500).json({ mensagem: erroMensagens.errosGerais.erroServidor });
+  };
+};
+
+module.exports = { criarUsuario, detalharPerfil, editarPerfil };

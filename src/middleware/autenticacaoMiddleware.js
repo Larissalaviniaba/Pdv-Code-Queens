@@ -8,7 +8,7 @@ const verificarUsuarioLogado = async (req, res, next) => {
 
   if (!authorization) {
     return res.status(400).json({
-      mensagem: errosGerais.naoAutenticado,
+      mensagem: errosGerais.naoAutorizado, // estava naoAutenticado, porem não existe a variável com essa mensagem, alterado para naoAutorizado
     });
   }
 
@@ -21,7 +21,7 @@ const verificarUsuarioLogado = async (req, res, next) => {
 
     if (!usuario) {
       return res.status(404).json({
-        mensagem: errosGerais.naoAutenticado,
+        mensagem: errosGerais.naoAutorizado,
       });
     }
 
@@ -32,7 +32,7 @@ const verificarUsuarioLogado = async (req, res, next) => {
     next();
   } catch (error) {
     return res.status(500).json({
-      mensagem: errosGerais.naoAutenticado,
+      mensagem: errosGerais.naoAutorizado,
     });
   }
 };

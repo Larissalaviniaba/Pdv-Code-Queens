@@ -3,6 +3,7 @@ const errosUsuario = {
   usuarioNaoEncontrado: "Usuário não encontrado.",
   usuarioJaExiste: "Usuário já existe na nossa base de dados.",
   usuarioCadastroDadosInvalido: "É obrigatório informar nome, e-mail e senha.",
+  usuarioEmailJaExiste: "O e-mail informado já está sendo utilizado por outro usuário.",
 };
 
 const errosLogin = {
