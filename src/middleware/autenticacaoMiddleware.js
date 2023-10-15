@@ -5,7 +5,7 @@ const senhaJwt = require("../senhaJwt");
 
 const verificarUsuarioLogado = async (req, res, next) => {
   const { authorization } = req.headers;
-  
+
   if (!authorization) {
     return res.status(400).json({
       mensagem: errosGerais.naoAutorizado,
