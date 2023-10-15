@@ -12,8 +12,7 @@ const verificarUsuarioLogado = require("../middleware/autenticacaoMiddleware");
 
 rotas.post("/usuario", validarRequisicao(usuarioSchema), criarUsuario);
 
-rotas.use(verificarUsuarioLogado);
-rotas.get("/usuario", detalharPerfil);
-rotas.put("/usuario", validarRequisicao(usuarioSchema), editarPerfil);
+rotas.get("/usuario", verificarUsuarioLogado, detalharPerfil);
+rotas.put("/usuario", verificarUsuarioLogado, validarRequisicao(usuarioSchema), editarPerfil);
 
 module.exports = rotas;

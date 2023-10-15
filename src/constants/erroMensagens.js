@@ -14,6 +14,7 @@ const errosGerais = {
   naoAutorizado: "Usuario não autenticado.",
   erroServidor: "Erro interno do servidor.",
   camposObrigatorios: "Todos os campos devem ser informados.",
+  campoInvalido: "O campo informado não pode conter apenas espaços em branco."
 };
 
 module.exports = {
