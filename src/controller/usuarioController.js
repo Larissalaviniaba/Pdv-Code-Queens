@@ -6,6 +6,7 @@ const { errosGerais, errosUsuario } = require("../constants/erroMensagens");
 
 async function criarUsuario(req, res) {
   const { nome, email, senha } = req.body;
+
   try {
     const buscaEmail = await knex("usuarios")
       .where({ email: email })

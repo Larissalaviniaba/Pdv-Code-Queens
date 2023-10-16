@@ -1,4 +1,3 @@
-require("dotenv").config();
-const senhaJwt = process.env.JWT_PASSWORD;
+const senhaJwt = "X5vVCS46BXFB25va";
 
 module.exports = senhaJwt;
