@@ -1,211 +1,171 @@
-# PDV - CodeQueens 👑
+# 👑 Back-end - API REST PDV: Code Queens
 
-Esse projeto marca a etapa final do curso de Desenvolvimento de Software com ênfase em Back-End, oferecido pela <a href="https://cubos.academy/?utm_term=cubos%20academy&utm_campaign=Conversion+-+Search+-+Branding+-+Cubos+Academy&utm_source=google&utm_medium=cpc&hsa_acc=6320525513&hsa_cam=18154121427&hsa_grp=141084695032&hsa_ad=618464016440&hsa_src=g&hsa_tgt=kwd-1212716925774&hsa_kw=cubos%20academy&hsa_mt=e&hsa_net=adwords&hsa_ver=3&gclid=CjwKCAjwyY6pBhA9EiwAMzmfwZznm0pCci8QyZMBU_L5s_fvzJaukZDPH-qlJGh8Zg6eT7xi21ozyBoCLfkQAvD_BwE">Cubos Academy</a> em parceria com o <a href="https://www.ifood.com.br">iFood</a>.
+<p align="center">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Larissalaviniaba/Pdv-Code-Queens?color=blue">
 
-### Link do deploy:  <a>https://clumsy-slug-earmuffs.cyclic.cloud</a>
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Larissalaviniaba/Pdv-Code-Queens?color=blue">
+  
+  <a href="https://github.com/Larissalaviniaba/Pdv-Code-Queens/commits/main">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Larissalaviniaba/Pdv-Code-Queens?color=blue">
+  </a>
+   
+   <a href="https://github.com/Larissalaviniaba/Pdv-Code-Queens/stargazers">
+    <img alt="Stargazers" src="https://img.shields.io/github/stars/Larissalaviniaba/Pdv-Code-Queens?style=social">
+  </a>
+</p>
+<p align="center">
+    <a href="https://github.com/Larissalaviniaba/Pdv-Code-Queens">
+    <img alt="Projeto desenvolvido em grupo" src="https://img.shields.io/badge/desenvolvido-por%20Aline%20Lombardi,%20Ariel%20Sena,%20Karla%20Gonçalves,%20Larissa%20Lavínia%20e%20Poliana%20Santos-D818A5">
+   </a>
+</p>
 
-## Equipe: 
+<h4 align=center> 
+	🚧 API REST - PDV Code Queens 🚧
+</h4>
 
-- <a href="https://www.linkedin.com/in/aline-lombardi/">Aline Lombardi</a>
+<p align="center">
+	<img alt="Status Em Desenvolvimento" src="https://img.shields.io/badge/STATUS-EM%20DESENVOLVIMENTO-red">
+</p>
 
-- <a href="https://www.linkedin.com/in/arielsena27/">Ariel Sena</a>
+## 🎲 Demonstração da Aplicação
 
-- <a href="https://www.linkedin.com/in/karla-goncalves-s/">Karla Gonçalves</a>
+O deploy da aplicação está disponível no cyclic:
+<div align="center">
+<a href="https://clumsy-slug-earmuffs.cyclic.cloud">
+  <img alt="Deploy feito por Larrissa Lavínia" src="https://img.shields.io/badge/ACESSAR-%20DEPLOY-blue">
+</a>
+</div>
 
-- <a href="https://www.linkedin.com/in/larissalaviniaba/">Larissa Lavínia</a>
+## 📝 Sobre o projeto
 
-- <a href="https://www.linkedin.com/in/polianams/">Poliana Santos</a>
+Este projeto consiste em uma API REST desenvolvida para simular operações em um sistema de compra e venda (PDV). O projeto foi desenvolvido em grupo e dividido em três slipts, isto é três etapas. O objetivo desse projeto é fornecer uma base para a construção de um sistema completo de um PDV, seguindo os padrões REST, banco de dados relacional utilizando Deploy.
 
----
+## 📋 Funcionalidades
 
-<details>
-<summary><b> 1ª Sprint </b></summary>
-<br>
+Nesse projeto API REST - PDV é possível:
 
-<details>
-<summary><b> Escopo do projeto</b></summary>
+- Slipt 01:
+    - Listar categorias (sem necessidade de login);
+    - Criar conta de usuário;
+    - Fazer login;
+    - Detalhar conta de usuário (necessário login);
+    - Editar conta de usuário (necessário login).
+- Slipt 02: Em breve.
+- Slipt 03: Em breve.
 
-### O que o usuário não logado poderá fazer:
+## ▶️ Como executar o projeto
 
-- Listar categorias;
-- Cadastrar usuário;
-- Efetuar login.
+### 🏗️ Estrutura da API REST
 
+Essa API REST foi organizada de forma a manter a clareza e a modularidade do projeto. Os elementos da API REST estão distribuídos dentro da pasta `src`, como segue:
 
-### O que o usuário logado poderá fazer:
+- Arquivo `index.js`: Este é o ponto de entrada da aplicação, onde a execução do servidor é iniciada. Ele configura as dependências necessárias e inicia a escuta por requisições;
+- Arquivo `conexaoBanco`: Este arquivo é responsável por estabelecer a conexão com o banco de dados PostgreSQL, utilizando a biblioteca `knex`. Ele faz uso de variáveis de ambiente configuradas no arquivo `.env` para garantir a segurança e a flexibilidade das informações de conexão;
+- Pasta `controller`: Esta pasta abriga todas as funções responsáveis por executar as operações relacionadas às rotas da API;
+- Pasta `routes`: Esta pasta contém todos os arquivos onde as rotas da API estão definidas;
+- Pasta `database`: Aqui são armazenados os arquivos utilizados para construir as tabelas do banco de dados usando PostgreSQL;
+- Pasta `middleware`: Contém as definições de middlewares, que são funções intermediárias que podem ser executadas antes das rotas ou após as requisições;
+- Pasta `constants`: Esta pasta é responsável por armazenar as mensagens de erros e de sucesso do projeto;
+- Pasta `schemas`: Nesta pasta, estão armazenados os esquemas de dados que definem a estrutura e as restrições dos objetos de dados utilizados pela API;
 
-- Detalhar perfil do usuário, ou seja, visualizar os dados do seu perfil;
-- Editar/Atualizar informações do perfil.
+- Fora da pasta `src`, na raiz do projeto, contém o arquivo `.env.exemple`. Esse arquivo é um modelo Este arquivo é um modelo para configurar as variáveis de ambiente necessárias para o funcionamento adequado da aplicação. Ele fornece um esboço das variáveis que precisam ser configuradas e seus respectivos valores.
 
----
-<br/>
+### 🛠️ Pré-requisitos
 
-**Importante 1:** Sempre que a validação de uma requisição falhar, responder com código de erro e mensagem adequada à situação.
+- Possuir um editor de código-fonte, por exemplo [VSCode](https://code.visualstudio.com/download) ou [Vim](https://www.vim.org/download.php);
+- Possuir o [Git](https://git-scm.com/downloads) ou qualquer outro programa de versionamento;
+- Possuir o [Node.js](https://nodejs.org/en/download/current) (versão 18.16.0 ou superior);
+- Possuir o [Insomnia](https://insomnia.rest/download) instalado.
 
-**Importante 2:** Para endpoints de cadastro/atualização os objetos de requisição devem conter as propriedades equivalentes as colunas das tabelas.
+### ⚙️ Instalação
 
-**Exemplo:**
+Siga as etapas abaixo para configurar e executar a API em sua máquina local:
 
-```javascript
-// Corpo da requisição para cadastro de usuário (body)
-{
-    "nome": "José",
-    "email": "jose@email.com",
-    "senha": "jose"
-}
+1. Faça um fork deste repositório;
+2. Clone este repositório em sua máquina local;
+3. Navegue até o diretório do projeto:
 ```
-## **Status Codes**
-
-Possíveis **_status codes_** esperados como resposta da API.
-
-```javascript
-// 200 (OK) = requisição bem sucedida
-// 201 (Created) = requisição bem sucedida e algo foi criado
-// 204 (No Content) = requisição bem sucedida, sem conteúdo no corpo da resposta
-// 400 (Bad Request) = o servidor não entendeu a requisição pois está com uma sintaxe/formato inválido
-// 401 (Unauthorized) = o usuário não está autenticado (logado)
-// 403 (Forbidden) = o usuário não tem permissão de acessar o recurso solicitado
-// 404 (Not Found) = o servidor não pode encontrar o recurso solicitado
-// 500 (Internal Server Error) = erro inesperado do servidor
+cd nome_da_pasta
 ```
-## Banco de Dados:
+4. Instale as dependências necessárias executando o comando:
+```
+npm install
+```
+5. Inicie o servidor local com o seguinte comando:
+```
+npm run dev
+```
+6. Aguarde até que a mensagem `O servidor está rodando em http://localhost:3000/` seja exibida no terminal;
+7. Após a confirmação acima, abra o Insomnia ou qualquer outra ferramenta similar e configure um novo ambiente para testar as rotas da API;
+   
+⚠️ Ademais, é possível importar o arquivo `insomnia.json` localizado na raiz desse projeto projeto. Esse arquivo contém as configurações pré-definidas necessárias para testar as rotas da API de maneira fácil e eficiente.
 
-- Criar um banco de dados PostGreSQL chamado `pdv`.
-- Deverá conter as seguintes tabelas:
+Por fim, certifique-se de verificar a documentação da API para entender melhor as rotas disponíveis e os formatos de dados aceitos.
 
-### 1 - Tabela de usuários:
+## 🚀 Tecnologias Utilizadas
 
-- **id** (autoincremento);
+1. Node.js (versão 18.16.0);
 
-- **nome** (texto);
+2. Bibliotecas:
+   
+- nodemon (versão 3.0.1);
+- bcrypt: (versão 5.1.1);
+- dotenv: (versão 16.3.1);
+- express (versão 4.18.2);
+- joi (versão 17.11.0);
+- jsonwebtoken (versão 9.0.2);
+- knex (versão 3.0.1);
+- pg ou node-postgres (versão 8.11.3).
 
-- **email** (campo único);
+3. Linguagem de programação utilizada:
+   
+- JavaScript.
 
-- **senha** (texto).
+## 🤝 Contribuição
 
-### 2 - Tabela de categorias:
+Contribuições são bem-vindas! Se você quiser melhorar ou adicionar novos recursos a esta API, siga as etapas abaixo:
 
-- **id** (autoincremento);
+1. Crie um Fork deste repositório;
+2. Crie uma branch para suas alterações: 
+```
+git checkout -b my-feature
+```
+3. Commit suas alterações: 
+```
+git commit -m 'Adicionar nova funcionalidade'
+```
+4. Faça push para a branch: 
+```
+git push origin my-feature
+```
+5. Abra um pull request.
 
-- **descrição** (texto);
+## 🧙‍♂️ Autoras
 
-- Cadastrar categorias na tabela.
+Esse projeto Back-end foi desenvolvido em grupo como desafio do modulo 2 do curso de Desenvolvimento de Software - Foco em Back-end da [Cubos Academy](https://cubos.academy/). ✨
+As responsabilidades e desenvolvimento de cada slipt das integrantes foram:
 
-## Endpoints
+### 1. Primeira Slipt:
 
-### GET - Listar Categorias ( /categoria )
+- [Aline Lombardi](https://www.linkedin.com/in/aline-lombardi/): ㅤ ㅤResponsável por criar as rotas de edição e detalhamento de usuários;
 
-### Dados enviados:
+- [Ariel Sena](https://www.linkedin.com/in/arielsena27/):ㅤ ㅤ ㅤ ㅤResponsável por criar a rota de cadastro de usuários;
 
-- Nenhum! Não é necessário.
+- [Karla Gonçalves](https://www.linkedin.com/in/karla-goncalves-s/):ㅤ ㅤResponsável por criar a rota de login e a autenticação das rotas protegidas por token;
 
-### Dados retornados:
+- [Larissa Lavínia](https://www.linkedin.com/in/larissalaviniaba/):ㅤㅤㅤEncarregada do deploy, configuração do banco de dados não relacional, criação da rota de listagem de categorias, desenvolvimento dos schemas e aprimoramento dos padrões de código limpo (clean code) em todo o servidor;
 
-- Lista com as categorias previamente cadastradas no banco de dados.
+- [Poliana Santos](https://www.linkedin.com/in/polianams/): ㅤ ㅤ Líder da equipe, encarregada de delinear o escopo inicial do projeto, implementar os schemas, ajustar os arquivos de mensagens de erro e sucesso, e aprimorar os padrões de clean code em toda a aplicação.
 
----
+### 2. Segunda Slipt: 
+- Em breve;
+### 3. Terceira Slipt: 
+- Em breve.
 
-### POST - Cadastrar Usuário  ( /usuario )
+## 📝 Licença
 
-### Dados enviados:
+Este projeto esta sobe a licença [MIT](./LICENSE).
 
-Os dados serão enviados por requisição por meio do body:
+Divirta-se explorando a API! 🌟
 
-- **nome**;
-- **email**;
-- **senha**.
-
-### Dados retornados:
-
-- Sucesso / erro.
-
-### Objetivos Gerais
-
-- Validar nome, email e a senha;
-- Verificar se o email já existe no banco de dados;
-- Criptografar a senha;
-- Cadastrar o usuário no banco de dados;
-- Retornar o nome do usuário e email ou uma mensagem de sucesso.
----
-
-### POST - Login ( /login )
-
-### Dados enviados:
-
-Os dados serão enviados por requisição por meio do body:
-
-- **email**;
-- **senha**.
-
-### Dados retornados:
-
-- Sucesso / erro;
-- **nome**, **email** e **token**.
-
-### Objetivos Gerais
-
-- Validar email e a senha;
-- Buscar o usuário no banco de dados;
-- Verificar se a senha informada está correta;
-- Gerar o token de autenticação;
-- Retornar os dados do usuário (nome, email e token).
-
----
-
-### **GET - Detalhar Perfil do usuário logado ( /usuario )
-
-### Dados enviados:
-
-- **token** (que terá id do usuário logado);
-
-### Dados retornados:
-
-- **id**;
-- **nome**;
-- **email**.
-
-### Objetivos Gerais
-
-- Validar o token do usuario logado;
-- Buscar o cadastro do usuário com a informação do token (com o token é possível obter os dados do usuário);
-- Retornar os dados do usuário.
-
----
-### PUT - Editar perfil do usuário ( /usuario )
-
-### Dados enviados:
-
-- **token** (que terá id do usuário logado);
-
-#### Enviar os seguintes dados pelo body:
-
-- **nome**;
-- **email**;
-- **senha**.
-
-### Dados retornados:
-
-- **id**;
-- **nome**;
-- **email**.
-
-### Objetivos Gerais
-
-- Validar o token do usuário logado;
-- Validar os campos informados no body da requisição;
-- Buscar o cadastro do usuário com a informação do token (com o token é possível obter os dados do usuário);
-- Verificar se o email novo é único;
-- Criptografar a nova senha caso seja modificada;
-- Modificar o banco de dados com os novos dados do usuário.
-
----
-
-## Deploy
-
-- Fazer o deploy;
-- Disponibilizar a URL.
-
-</details>
-</details>
-
-###### tags: `módulo 5` `desafio` `api` `ApiRest` `node.js`
+###### tags: `módulo 5` `desafio` `api` `node.js` `back-end` `API REST` `PostgreSQL`, `SQL`, `javascript`
