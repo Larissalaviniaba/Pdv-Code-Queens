@@ -15,11 +15,17 @@ const usuarioSchema = joi.object({
     "string.trim": errosGerais.campoInvalido,
   }),
 
-  senha: joi.string().min(5).trim().required().messages({
+  senha: joi.string().custom((value, helpers) => {
+    if (/\s/.test(value)) {
+      return helpers.error('string.regex.base');
+    }
+    return value;
+  }, errosGerais.campoInvalido)
+  .min(5).required().messages({
     "any.required": errosGerais.camposObrigatorios,
     "string.min": errosUsuario.tamanhoMinimoSenha,
     "string.empty": errosGerais.camposObrigatorios,
-    "string.trim": errosGerais.campoInvalido,
+    "string.regex.base": errosGerais.campoInvalido,
   }),
 });
 
