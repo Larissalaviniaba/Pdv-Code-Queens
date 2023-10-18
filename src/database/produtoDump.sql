@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS produtos;
+
 CREATE TABLE produtos(
     id SERIAL PRIMARY KEY,
     descricao TEXT NOT NULL,
