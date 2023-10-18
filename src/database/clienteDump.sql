@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS clientes;
+
 CREATE TABLE clientes(
     id SERIAL PRIMARY KEY, 
     nome TEXT NOT NULL,
