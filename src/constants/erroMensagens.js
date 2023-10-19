@@ -17,8 +17,14 @@ const errosGerais = {
   campoInvalido: "O campo informado não pode conter apenas espaços em branco."
 };
 
+const errosProdutos = {
+    categoriaInexistente: "A categoria informada não existe"
+
+}
+
 module.exports = {
   errosGerais,
   errosLogin,
   errosUsuario,
+  errosProdutos
 };
