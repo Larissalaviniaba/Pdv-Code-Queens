@@ -1,4 +1,12 @@
 const knex = require("../../conexaoBanco");
+
+const {
+  errosCategoria,
+  errosProduto,
+  errosGerais,
+} = require("../../constants/erroMensagens");
+const { sucessoProduto } = require("../../constants/sucessoMensagens");
+
 const cadastrarProduto = async (req, res) => {
   const { descricao, categoria_id, quantidade_estoque, valor } = req.body;
 
@@ -11,7 +19,7 @@ const cadastrarProduto = async (req, res) => {
     if (!buscarCategoria) {
       return res
         .status(404)
-        .json({ mensagem: "A categoria informada não existe." });
+        .json({ mensagem: errosCategoria.categoriaInvalida });
     }
 
     const buscarProduto = await knex("produtos")
@@ -21,7 +29,7 @@ const cadastrarProduto = async (req, res) => {
 
     if (buscarProduto) {
       return res.status(200).json({
-        mensagem: "O produto já existe no banco de dados.",
+        mensagem: errosProduto.produtoJaExiste,
       });
     }
 
@@ -33,10 +41,10 @@ const cadastrarProduto = async (req, res) => {
     });
 
     return res.status(201).json({
-      mensagem: "O produto foi cadastrado com sucesso.",
+      mensagem: sucessoProduto.produtoSucesso,
     });
   } catch (error) {
-    return res.status(500).json({ mensagem: "Erro interno do servidor" });
+    return res.status(500).json({ mensagem: errosGerais.erroServidor });
   }
 };
 

@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const knex = require("../conexaoBanco");
 
-const sucessoUsuario = require("../constants/sucessoMensagens");
+const { sucessoUsuario } = require("../constants/sucessoMensagens");
 const { errosGerais, errosUsuario } = require("../constants/erroMensagens");
 
 async function criarUsuario(req, res) {

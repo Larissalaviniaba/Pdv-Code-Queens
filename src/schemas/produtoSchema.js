@@ -9,16 +9,17 @@ const produtoSchema = joi.object({
   }),
   quantidade_estoque: joi.number().integer().min(0).required().messages({
     "any.required": errosGerais.camposObrigatorios,
-    "number.base": errosProduto.quantidadeInvalida,
+    "number.integer": errosProduto.quantidadeInvalida,
     "number.min": errosProduto.quantidadeInvalida,
   }),
   valor: joi.number().positive().required().messages({
     "any.required": errosGerais.camposObrigatorios,
     "number.positive": errosProduto.valorInvalido,
   }),
-  descricao: joi.string().required().messages({
+  descricao: joi.string().trim().required().messages({
     "any.required": errosGerais.camposObrigatorios,
     "string.empty": errosGerais.camposObrigatorios,
+    "string.trim": errosGerais.stringComEspaço,
   }),
 });
 

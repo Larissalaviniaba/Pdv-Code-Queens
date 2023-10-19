@@ -3,4 +3,11 @@ const sucessoUsuario = {
   atualizacaoSucesso: "Usuário foi atualizado com sucesso!",
 };
 
-module.exports = sucessoUsuario;
+const sucessoProduto = {
+  produtoSucesso: "O produto foi cadastrado com sucesso.",
+};
+
+module.exports = {
+  sucessoUsuario,
+  sucessoProduto,
+};
