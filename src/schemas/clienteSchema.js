@@ -29,27 +29,21 @@ const clienteSchema = joi.object({
     .string()
     .pattern(/^[0-9]+$/)
     .messages({
-      "string.empty": errosGerais.camposObrigatorios,
       "string.pattern.base": errosCliente.cepInvalido,
   }),
   rua: joi.string().trim().messages({
-    "string.empty": errosGerais.camposObrigatorios,
     "string.trim": errosGerais.campoInvalido,
   }),
   numero: joi.string().trim().messages({
-    "string.empty": errosGerais.camposObrigatorios,
     "string.trim": errosGerais.stringComEspaço,
   }),
   bairro: joi.string().trim().messages({
-    "string.empty": errosGerais.camposObrigatorios,
     "string.trim": errosGerais.stringComEspaço,
   }),
   cidade: joi.string().trim().messages({
-    "string.empty": errosGerais.camposObrigatorios,
     "string.trim": errosGerais.stringComEspaço,
   }),
   estado: joi.string().trim().max(2).messages({
-    "string.empty": errosGerais.camposObrigatorios,
     "string.trim": errosGerais.stringComEspaço,
     "string.max": errosCliente.estadoInvalido,
   }),
