@@ -8,8 +8,8 @@ const errosCliente = {
   idInvalido: "Insira um ID válido para 'categoria_id'.",
   valorInvalido: "Insira um número válido para 'valor'.",
   quantidadeInvalida: "Insira um número válido para 'quantidade_estoque'.",
-  cepInvalido: "O campo CEP deve conter apenas números válidos.",
-  cpfInvalido: "O campo CPF deve conter apenas números válidos.",
+  cepInvalido: "CEP inválido.",
+  cpfInvalido: "CPF inválido.",
   estadoInvalido: "O campo 'estado' deverá ter no máximo dois caracteres.",
 };
 const errosProduto = {
