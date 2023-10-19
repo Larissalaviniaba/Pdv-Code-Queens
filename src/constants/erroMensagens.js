@@ -12,6 +12,7 @@ const errosCliente = {
 };
 const errosProduto = {
   produtoJaExiste: "O produto já existe no banco de dados.",
+  produtoInvalido: "O produto com o ID informado não existe no banco de dados.",
   idInvalido: "Insira um ID válido para 'categoria_id'.",
   valorInvalido: "Insira um número válido para 'valor'.",
   quantidadeInvalida: "Insira um número válido para 'quantidade_estoque'.",

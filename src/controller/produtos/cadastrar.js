@@ -41,7 +41,7 @@ const cadastrarProduto = async (req, res) => {
     });
 
     return res.status(201).json({
-      mensagem: sucessoProduto.produtoSucesso,
+      mensagem: sucessoProduto.produtoCadastrado,
     });
   } catch (error) {
     return res.status(500).json({ mensagem: errosGerais.erroServidor });

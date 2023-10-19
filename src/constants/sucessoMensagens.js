@@ -4,7 +4,8 @@ const sucessoUsuario = {
 };
 
 const sucessoProduto = {
-  produtoSucesso: "O produto foi cadastrado com sucesso.",
+  produtoCadastrado: "O produto foi cadastrado com sucesso.",
+  produtoAtualizado: "O produto foi atualizado com sucesso.",
 };
 
 module.exports = {
