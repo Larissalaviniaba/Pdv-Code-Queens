@@ -3,6 +3,8 @@ const errosCategoria = {
 };
 
 const errosCliente = {
+  emailJaExiste: "O e-mail já existe na nossa base de dados.",
+  cpfJaExiste: "O cpf já existe na nossa base de dados.",
   idInvalido: "Insira um ID válido para 'categoria_id'.",
   valorInvalido: "Insira um número válido para 'valor'.",
   quantidadeInvalida: "Insira um número válido para 'quantidade_estoque'.",
