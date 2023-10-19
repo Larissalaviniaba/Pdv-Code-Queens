@@ -10,10 +10,11 @@ const verificarUsuarioLogado = require("../middleware/autenticacaoMiddleware");
 const { cadastrarProduto } = require("../controller/produtos/cadastrar");
 const { atualizarProduto } = require("../controller/produtos/atualizar");
 const { detalharProdutos } = require("../controller/produtos/detalhar");
+const { verificarID } = require("../middleware/autenticacaoID");
 
 rotas.post("/produto", validarRequisicao(produtoSchema), cadastrarProduto);
 rotas.get("/produto", verificarUsuarioLogado, listarProdutos);
-rotas.get("/produto/:id", verificarUsuarioLogado, detalharProdutos);
+rotas.get("/produto/:id", verificarUsuarioLogado, verificarID, detalharProdutos);
 rotas.put("/produto/:id", validarRequisicao(produtoSchema), atualizarProduto);
 rotas.delete("/produto/:id");
 
