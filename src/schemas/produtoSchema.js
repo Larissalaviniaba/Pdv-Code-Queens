@@ -22,4 +22,4 @@ const produtoSchema = joi.object({
   }),
 });
 
-module.exports = usuarioSchema;
+module.exports = produtoSchema;
