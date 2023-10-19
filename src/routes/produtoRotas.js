@@ -1,5 +1,8 @@
 const express = require("express");
 const rotas = express();
+const verificarUsuarioLogado = require("../middleware/autenticacaoMiddleware");
+const { listarProdutos } = require("../controller/produtos/listar");
+
 
 const produtoSchema = require("../schemas/produtoSchema");
 const validarRequisicao = require("../middleware/validarRequisicaoMiddleware");

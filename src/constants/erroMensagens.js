@@ -16,6 +16,8 @@ const errosProduto = {
   idInvalido: "Insira um ID válido para 'categoria_id'.",
   valorInvalido: "Insira um número válido para 'valor'.",
   quantidadeInvalida: "Insira um número válido para 'quantidade_estoque'.",
+  categoriaInexistente: "A categoria informada não existe",
+
 };
 const errosUsuario = {
   usuarioErro: "Usuário não pode ser criado!",
@@ -37,6 +39,7 @@ const errosGerais = {
   stringComEspaço:
     "Os campos não podem conter espaços no início e no final do texto.",
 };
+
 
 module.exports = {
   errosGerais,
