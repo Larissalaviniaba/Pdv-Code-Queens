@@ -13,6 +13,7 @@ const errosCliente = {
 const errosProduto = {
   produtoJaExiste: "O produto já existe no banco de dados.",
   produtoInvalido: "O produto com o ID informado não existe no banco de dados.",
+  idNaoInformado: "O id do produto deve ser informado.",
   idInvalido: "Insira um ID válido para 'categoria_id'.",
   valorInvalido: "Insira um número válido para 'valor'.",
   quantidadeInvalida: "Insira um número válido para 'quantidade_estoque'.",
@@ -37,6 +38,7 @@ const errosGerais = {
   stringComEspaço:
     "Os campos não podem conter espaços no início e no final do texto.",
 };
+
 
 module.exports = {
   errosGerais,
