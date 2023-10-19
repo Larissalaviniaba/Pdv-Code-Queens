@@ -1,9 +1,5 @@
-// const bcrypt = require("bcrypt");
-// const jwt = require("jsonwebtoken");
-// const senhaJwt = require("../senhaJwt");
 const knex = require("../../conexaoBanco");
-const { errosGerais, errosProduto } = require("../../constants/erroMensagens");
-
+const { errosGerais, errosCategoria  } = require("../../constants/erroMensagens");
 
 const listarProdutos = async (req, res) => {
 
@@ -18,7 +14,7 @@ const listarProdutos = async (req, res) => {
 
             if(!encontrarProduto){
                 return res.status(404).json({
-                    mensagem: errosProduto.categoriaInexistente
+                    mensagem: errosCategoria.categoriaInvalida
                 })
             }
 
@@ -32,14 +28,12 @@ const listarProdutos = async (req, res) => {
         }        
         
     } catch (error) {
-        console.log(error.mensage)
         return res.status(500).json({
             mensagem: errosGerais.erroServidor,
           })
     }
 
 }
-
 
 module.exports = {
     listarProdutos
