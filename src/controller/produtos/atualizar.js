@@ -31,15 +31,12 @@ const atualizarProduto = async (req, res) => {
         .json({ mensagem: errosCategoria.categoriaInvalida });
     }
 
-    await knex("produtos")
-      .where({ id: id })
-      .update({
-        descricao,
-        quantidade_estoque:
-          buscarProduto.quantidade_estoque + quantidade_estoque,
-        valor,
-        categoria_id,
-      });
+    await knex("produtos").where({ id: id }).update({
+      descricao,
+      quantidade_estoque,
+      valor,
+      categoria_id,
+    });
 
     return res.status(200).json({
       mensagem: sucessoProduto.produtoAtualizado,
