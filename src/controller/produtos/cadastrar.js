@@ -16,27 +16,12 @@ const cadastrarProduto = async (req, res) => {
 
     const buscarProduto = await knex("produtos")
       .where({ descricao: descricao })
-      .select("descricao", "quantidade_estoque", "valor")
+      .select("descricao", "quantidade_estoque")
       .first();
 
     if (buscarProduto) {
-      if (buscarProduto.valor !== valor) {
-        return res.status(409).json({
-          mensagem:
-            "O preço do produto difere do preço registrado no banco de dados.",
-        });
-      }
-
-      await knex("produtos")
-        .where({ descricao: descricao })
-        .update({
-          quantidade_estoque:
-            buscarProduto.quantidade_estoque + quantidade_estoque,
-        });
-
       return res.status(200).json({
-        mensagem:
-          "O produto já existia no banco de dados e o estoque foi atualizado.",
+        mensagem: "O produto já existe no banco de dados.",
       });
     }
 
