@@ -13,7 +13,7 @@ const detalharProdutos = async (req, res) => {
             })
         }
 
-     
+
         const encontrarPorId = await knex("produtos").where('id', '=', id).first();
 
         if(!encontrarPorId){
