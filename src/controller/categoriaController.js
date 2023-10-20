@@ -7,7 +7,6 @@ const listarCategorias = async (req, res) => {
 
     return res.status(200).json({ categorias });
   } catch (error) {
-    console.log(error.message);
     return res.status(500).json({ mensagem: erroServidor });
   }
 };

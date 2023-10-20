@@ -7,7 +7,7 @@ CREATE TABLE clientes(
     cpf TEXT UNIQUE NOT NULL,
     cep TEXT,
     rua TEXT,
-    numero INT,
+    numero TEXT,
     bairro TEXT,
     cidade TEXT,
     estado TEXT
