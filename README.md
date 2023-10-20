@@ -142,24 +142,34 @@ git push origin my-feature
 
 ## 🧙‍♂️ Autoras
 
-Esse projeto Back-end foi desenvolvido em grupo como desafio do modulo 2 do curso de Desenvolvimento de Software - Foco em Back-end da [Cubos Academy](https://cubos.academy/). ✨
+Esse projeto Back-end foi desenvolvido em grupo como desafio do modulo 5 do curso de Desenvolvimento de Software - Foco em Back-end da [Cubos Academy](https://cubos.academy/). ✨
 As responsabilidades e desenvolvimento de cada slipt das integrantes foram:
 
-### 1. Primeira Slipt:
+### 1. Primeira Sprint:
 
-- [Aline Lombardi](https://www.linkedin.com/in/aline-lombardi/): ㅤ ㅤResponsável por criar as rotas de edição e detalhamento de usuários;
+- [Aline Lombardi](https://www.linkedin.com/in/aline-lombardi/): ㅤ ㅤEncarregada de desenvolver as rotas de edição e detalhamento de usuários, além de realizar aprimoramentos nos schemas para o cadastro e edição de usuários, assegurando a consistência e a funcionalidade aprimorada do sistema;
 
-- [Ariel Sena](https://www.linkedin.com/in/arielsena27/):ㅤ ㅤ ㅤ ㅤResponsável por criar a rota de cadastro de usuários;
+- [Ariel Sena](https://www.linkedin.com/in/arielsena27/):ㅤ ㅤ ㅤ ㅤEncarregada de implementar a rota de cadastro de usuários, garantindo uma integração perfeita e segura com o sistema;
 
-- [Karla Gonçalves](https://www.linkedin.com/in/karla-goncalves-s/):ㅤ ㅤResponsável por criar a rota de login e a autenticação das rotas protegidas por token;
+- [Karla Gonçalves](https://www.linkedin.com/in/karla-goncalves-s/):ㅤ ㅤEncarregado de estabelecer a rota de login e implementar a autenticação para as rotas protegidas por token, assegurando a segurança e o acesso restrito a recursos sensíveis;
 
 - [Larissa Lavínia](https://www.linkedin.com/in/larissalaviniaba/):ㅤㅤㅤEncarregada do deploy, configuração do banco de dados não relacional, criação da rota de listagem de categorias, desenvolvimento dos schemas e aprimoramento dos padrões de código limpo (clean code) em todo o servidor;
 
 - [Poliana Santos](https://www.linkedin.com/in/polianams/): ㅤ ㅤ Líder da equipe, encarregada de delinear o escopo inicial do projeto, implementar os schemas, ajustar os arquivos de mensagens de erro e sucesso, e aprimorar os padrões de clean code em toda a aplicação.
 
-### 2. Segunda Slipt: 
-- Em breve;
-### 3. Terceira Slipt: 
+### 2. Segunda Sprint:
+
+- [Aline Lombardi](https://www.linkedin.com/in/aline-lombardi/): ㅤ ㅤEncarregada de implementar o endpoint para listar e detalhar clientes, bem como de contribuir para a definição do escopo do projeto, garantindo uma compreensão abrangente das necessidades do sistema;
+
+- [Ariel Sena](https://www.linkedin.com/in/arielsena27/):ㅤ ㅤ ㅤ ㅤEncarregada de estabelecer a estrutura do banco de dados e desenvolver a rota de exclusão de produtos;
+
+- [Karla Gonçalves](https://www.linkedin.com/in/karla-goncalves-s/):ㅤ ㅤEncarregada de implementar a rota para listar e detalhar produtos, garantindo uma integração eficiente e precisa com os requisitos do sistema;
+
+- [Larissa Lavínia](https://www.linkedin.com/in/larissalaviniaba/):ㅤㅤㅤEncarregada de implementar os endpoints para a funcionalidade de cadastro e edição de clientes, ao mesmo tempo em que aprimorou os schemas relacionados às rotas de clientes e produtos. Responsável por otimizar os recursos dos arquivos de mensagens de erro e sucesso, seguindo as diretrizes estabelecidas. Além disso, contribuiu significativamente para o aprimoramento dos padrões de clean code em todo o servidor;
+
+- [Poliana Santos](https://www.linkedin.com/in/polianams/): ㅤ ㅤ Encarregada de delinear o escopo da segunda sprint do projeto, bem como ajudar no desenvolvimento dos schemas das rotas de produtos e clientes. Responsável por otimizar os arquivos de mensagens de erro e sucesso, em conformidade com as diretrizes estabelecidas. Além disso, encarregada de fortalecer consistentemente os padrões de clean code em toda a arquitetura da aplicação. Adicionalmente, assumiu a responsabilidade pela concepção e implementação das rotas de cadastro e atualização de produtos.
+  
+### 3. Terceira Sprint:
 - Em breve.
 
 ## 📝 Licença

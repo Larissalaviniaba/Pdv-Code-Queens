@@ -19,45 +19,41 @@ const clienteSchema = joi.object({
   cpf: joi
     .string()
     .pattern(/^[0-9]+$/)
+    .max(11)
     .required()
     .messages({
       "any.required": errosGerais.camposObrigatorios,
       "string.empty": errosGerais.camposObrigatorios,
       "string.pattern.base": errosCliente.cpfInvalido,
+      "string.max": errosCliente.cpfInvalido,
     }),
   cep: joi
     .string()
     .pattern(/^[0-9]+$/)
-    .required()
+    .max(8)
     .messages({
-      "any.required": errosGerais.camposObrigatorios,
-      "string.empty": errosGerais.camposObrigatorios,
+      "string.empty": errosCliente.enderecoInvalido,
       "string.pattern.base": errosCliente.cepInvalido,
-    }),
-  rua: joi.string().required().trim().messages({
-    "any.required": errosGerais.camposObrigatorios,
-    "string.empty": errosGerais.camposObrigatorios,
+      "string.max": errosCliente.cepInvalido,
+  }),
+  rua: joi.string().trim().messages({
+    "string.empty": errosCliente.enderecoInvalido,
     "string.trim": errosGerais.campoInvalido,
   }),
-  numero: joi.string().required().trim().messages({
-    "any.required": errosGerais.camposObrigatorios,
-    "string.empty": errosGerais.camposObrigatorios,
+  numero: joi.string().trim().messages({
+    "string.empty": errosCliente.enderecoInvalido,
     "string.trim": errosGerais.stringComEspaço,
   }),
-  bairro: joi.string().required().trim().messages({
-    "any.required": errosGerais.camposObrigatorios,
-    "string.empty": errosGerais.camposObrigatorios,
+  bairro: joi.string().trim().messages({
+    "string.empty": errosCliente.enderecoInvalido,
     "string.trim": errosGerais.stringComEspaço,
   }),
-  cidade: joi.string().required().trim().messages({
-    "any.required": errosGerais.camposObrigatorios,
-    "string.empty": errosGerais.camposObrigatorios,
+  cidade: joi.string().trim().messages({
+    "string.empty": errosCliente.enderecoInvalido,
     "string.trim": errosGerais.stringComEspaço,
   }),
-  estado: joi.string().required().trim().max(2).messages({
-    "any.required": errosGerais.camposObrigatorios,
-    "string.empty": errosGerais.camposObrigatorios,
-    "string.trim": errosGerais.stringComEspaço,
+  estado: joi.string().trim().max(2).messages({
+    "string.empty": errosCliente.enderecoInvalido,
     "string.max": errosCliente.estadoInvalido,
   }),
 });
