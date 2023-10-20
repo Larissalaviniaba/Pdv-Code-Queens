@@ -3,6 +3,7 @@ const knex = require("../../conexaoBanco");
 const { errosGerais, errosCliente } = require("../../constants/erroMensagens");
 const { sucessoCliente } = require("../../constants/sucessoMensagens");
 const validarCPF = require("../../utils/validarCPF");
+const { seCampoExiste, seCampoNaoExiste } = require("../../utils/verificarCampo");
 
 const cadastrarCliente = async (req, res) => {
   const { nome, email, cpf, cep, rua, numero, bairro, cidade, estado } =
@@ -18,16 +19,15 @@ const cadastrarCliente = async (req, res) => {
       .where({ cpf: cpf })
       .first();
 
-    if (emailCliente) {
-      return res.status(404).json({ mensagem: errosCliente.emailJaExiste });
-    }
+    seCampoExiste(res, emailCliente, 409, errosCliente.emailJaExiste);
+    seCampoExiste(res, cpfCliente, 409, errosCliente.cpfJaExiste);
+    seCampoNaoExiste(res, validarCPF(cpf), 404, errosCliente.cpfInvalido);
 
-    if (cpfCliente) {
-      return res.status(404).json({ mensagem: errosCliente.cpfJaExiste });
-    }
-
-    if (!validarCPF(cpf)) {
-      return res.status(404).json({ mensagem: errosCliente.cpfInvalido });
+    if (
+      (cep || rua || numero || bairro || cidade || estado) &&
+      (!cep || !rua || !numero || !bairro || !cidade || !estado)
+    ) {
+      return res.status(400).json({ mensagem: errosCliente.enderecoInvalido });
     }
 
     await knex("clientes").insert({
