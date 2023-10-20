@@ -6,6 +6,7 @@ const sucessoUsuario = {
 const sucessoProduto = {
   produtoCadastrado: "O produto foi cadastrado com sucesso.",
   produtoAtualizado: "O produto foi atualizado com sucesso.",
+  produtoDeletado: "O produto foi excluído com sucesso."
 };
 const sucessoCliente = {
   clienteCadastrado: "O cliente foi cadastrado com sucesso.",
