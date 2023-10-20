@@ -6,6 +6,10 @@ const {
   errosGerais,
 } = require("../../constants/erroMensagens");
 const { sucessoProduto } = require("../../constants/sucessoMensagens");
+const {
+  seCampoExiste,
+  seCampoNaoExiste,
+} = require("../../utils/verificarCampo");
 
 const cadastrarProduto = async (req, res) => {
   const { descricao, categoria_id, quantidade_estoque, valor } = req.body;
@@ -16,22 +20,14 @@ const cadastrarProduto = async (req, res) => {
       .where({ id: categoria_id })
       .first();
 
-    if (!buscarCategoria) {
-      return res
-        .status(404)
-        .json({ mensagem: errosCategoria.categoriaInvalida });
-    }
+    seCampoNaoExiste(res, buscarCategoria, 404, errosCategoria.categoriaInvalida);
 
     const buscarProduto = await knex("produtos")
       .where({ descricao: descricao })
       .select("descricao", "quantidade_estoque")
       .first();
 
-    if (buscarProduto) {
-      return res.status(200).json({
-        mensagem: errosProduto.produtoJaExiste,
-      });
-    }
+    seCampoExiste(res, buscarProduto, 409, errosProduto.produtoJaExiste);
 
     await knex("produtos").insert({
       categoria_id,
