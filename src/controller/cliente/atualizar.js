@@ -3,41 +3,38 @@ const knex = require("../../conexaoBanco");
 const { errosGerais, errosCliente } = require("../../constants/erroMensagens");
 const { sucessoCliente } = require("../../constants/sucessoMensagens");
 const validarCPF = require("../../utils/validarCPF");
+const {
+  seCampoExiste,
+  seCampoNaoExiste,
+} = require("../../utils/verificarCampo");
 
 const atualizarCliente = async (req, res) => {
+  const { id } = req.params;
   const { nome, email, cpf, cep, rua, numero, bairro, cidade, estado } =
     req.body;
   try {
     const emailCliente = await knex("clientes")
-      .select("email")
+      .select("id")
       .where({ email: email })
-      .first();
+      .where("id", "<>", id);
 
     const cpfCliente = await knex("clientes")
-      .select("cpf")
+      .select("id")
       .where({ cpf: cpf })
-      .first();
+      .where("id", "<>", id);
 
-    if (emailCliente) {
-      return res.status(404).json({ mensagem: errosCliente.emailJaExiste });
-    }
-
-    if (cpfCliente) {
-      return res.status(404).json({ mensagem: errosCliente.cpfJaExiste });
-    }
-
-    if (!validarCPF(cpf)) {
-      return res.status(404).json({ mensagem: errosCliente.cpfInvalido });
-    }
+    seCampoExiste(res, emailCliente, 409, errosCliente.emailJaExiste);
+    seCampoExiste(res, cpfCliente, 409, errosCliente.cpfJaExiste);
+    seCampoNaoExiste(res, validarCPF(cpf), 404, errosCliente.cpfInvalido);
 
     if (
-        (cep || rua || numero || bairro || cidade || estado) &&
-        (!cep || !rua || !numero || !bairro || !cidade || !estado)
-      ) {
-        return res.status(400).json({ mensagem: errosCliente.enderecoInvalido });
-      }
+      (cep || rua || numero || bairro || cidade || estado) &&
+      (!cep || !rua || !numero || !bairro || !cidade || !estado)
+    ) {
+      return res.status(400).json({ mensagem: errosCliente.enderecoInvalido });
+    }
 
-    await knex("clientes").insert({
+    await knex("clientes").where({ id: id }).update({
       nome,
       email,
       cpf,
@@ -50,7 +47,7 @@ const atualizarCliente = async (req, res) => {
     });
 
     return res.status(201).json({
-      mensagem: sucessoCliente.clienteCadastrado,
+      mensagem: sucessoCliente.clienteAtualizado,
     });
   } catch (error) {
     return errosGerais.erroServidor;
@@ -58,5 +55,5 @@ const atualizarCliente = async (req, res) => {
 };
 
 module.exports = {
-    atualizarCliente,
+  atualizarCliente,
 };
