@@ -9,11 +9,11 @@ const { cadastrarProduto } = require("../controller/produtos/cadastrar");
 const { atualizarProduto } = require("../controller/produtos/atualizar");
 const { listarProdutos } = require("../controller/produtos/listar");
 const { detalharProdutos } = require("../controller/produtos/detalhar");
-const { verificarID } = require("../middleware/autenticacaoID");
+const { deletarProduto } = require("../controller/produtos/deletar")
 
 rotas.post("/produto", validarRequisicao(produtoSchema), cadastrarProduto);
-rotas.get("/produto", verificarUsuarioLogado, listarProdutos);
-rotas.get("/produto/:id", verificarUsuarioLogado, verificarID, detalharProdutos);
+rotas.get("/produto", verificarUsuarioLogado,listarProdutos);
+rotas.get("/produto/:id", verificarUsuarioLogado, detalharProdutos);
 rotas.put("/produto/:id", validarRequisicao(produtoSchema), atualizarProduto);
 rotas.delete("/produto/:id",verificarUsuarioLogado, deletarProduto);
 

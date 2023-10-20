@@ -18,12 +18,48 @@ const listarProdutos = async (req, res) => {
                 })
             }
 
-            const produtosID = await knex("produtos").where('categoria_id', '=', categoria_id).select('*').orderBy('id', 'asc')
+            const produtoID = await knex("produtos").where('categoria_id', '=', categoria_id)
+            .join("categorias", "produtos.categoria_id", "=", "categorias.id")
+            .select('produtos.id as produtos_id', 'produtos.descricao as produtos_descricao', 
+            'produtos.quantidade_estoque as produtos_quantidade', 'produtos.valor as produtos_valor', 
+            'categorias.id as categoria_id', 'categorias.descricao as categoria').orderBy('produtos.id', 'asc')
             
+            const produtosID = produtoID.map(item => ({
+                produto:{
+                id: item.produtos_id,
+                descricao: item.produtos_descricao,
+                quantidade: item.produtos_quantidade,
+                valor: item.produtos_valor,
+                categoria: {
+                    id: item.categoria_id,
+                    descricao: item.categoria
+                    }
+                }
+            }))
+
             return res.status(200).json(produtosID)
+
         }else{
-            const produtos = await knex.select('*').from("produtos").orderBy('id', 'asc')
-           
+            
+            const detalhar = await knex("produtos")
+                .join('categorias', 'produtos.categoria_id', 'categorias.id')
+                .select('produtos.id as produtos_id', 'produtos.descricao as produtos_descricao', 
+                'produtos.quantidade_estoque as produtos_quantidade', 'produtos.valor as produtos_valor', 
+                'categorias.id as categoria_id', 'categorias.descricao as categoria').orderBy('produtos.id', 'asc')
+
+            const produtos = detalhar.map(item => ({
+                produto:{
+                id: item.produtos_id,
+                descricao: item.produtos_descricao,
+                quantidade: item.produtos_quantidade,
+                valor: item.produtos_valor,
+                categoria: {
+                    id: item.categoria_id,
+                    descricao: item.categoria
+                    }
+                }
+            }))
+
             return res.status(200).json(produtos)
         }        
         
@@ -31,7 +67,7 @@ const listarProdutos = async (req, res) => {
         return res.status(500).json({
             mensagem: errosGerais.erroServidor,
           })
-    }
+    } 
 
 }
 

@@ -22,9 +22,26 @@ const detalharProdutos = async (req, res) => {
             })
         }
 
-        const produtoID = await knex("produtos").where('id', '=', id).select('*')
+        const detalhar = await knex("produtos").where('produtos.id', '=', id)
+        .join("categorias", "produtos.categoria_id", "=", "categorias.id")
+        .select('produtos.id as produtos_id', 'produtos.descricao as produtos_descricao', 
+        'produtos.quantidade_estoque as produtos_quantidade', 'produtos.valor as produtos_valor', 
+        'categorias.id as categoria_id', 'categorias.descricao as categoria').first()
+
+        const produto = {
+            produto:{
+            id: detalhar.produtos_id,
+            descricao: detalhar.produtos_descricao,
+            quantidade: detalhar.produtos_quantidade,
+            valor: detalhar.produtos_valor,
+            categoria: {
+                id: detalhar.categoria_id,
+                descricao: detalhar.categoria
+            }
+        }}
+
             
-        return res.status(200).json(produtoID)
+        return res.status(200).json(produto)
 
 
     } catch (error) {
