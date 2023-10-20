@@ -19,32 +19,41 @@ const clienteSchema = joi.object({
   cpf: joi
     .string()
     .pattern(/^[0-9]+$/)
+    .max(11)
     .required()
     .messages({
       "any.required": errosGerais.camposObrigatorios,
       "string.empty": errosGerais.camposObrigatorios,
       "string.pattern.base": errosCliente.cpfInvalido,
+      "string.max": errosCliente.cpfInvalido,
     }),
   cep: joi
     .string()
     .pattern(/^[0-9]+$/)
+    .max(8)
     .messages({
+      "string.empty": errosCliente.enderecoInvalido,
       "string.pattern.base": errosCliente.cepInvalido,
+      "string.max": errosCliente.cepInvalido,
   }),
   rua: joi.string().trim().messages({
+    "string.empty": errosCliente.enderecoInvalido,
     "string.trim": errosGerais.campoInvalido,
   }),
   numero: joi.string().trim().messages({
+    "string.empty": errosCliente.enderecoInvalido,
     "string.trim": errosGerais.stringComEspaço,
   }),
   bairro: joi.string().trim().messages({
+    "string.empty": errosCliente.enderecoInvalido,
     "string.trim": errosGerais.stringComEspaço,
   }),
   cidade: joi.string().trim().messages({
+    "string.empty": errosCliente.enderecoInvalido,
     "string.trim": errosGerais.stringComEspaço,
   }),
   estado: joi.string().trim().max(2).messages({
-    "string.trim": errosGerais.stringComEspaço,
+    "string.empty": errosCliente.enderecoInvalido,
     "string.max": errosCliente.estadoInvalido,
   }),
 });
