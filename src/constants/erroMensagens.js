@@ -5,12 +5,13 @@ const errosCategoria = {
 const errosCliente = {
   emailJaExiste: "O e-mail já existe na nossa base de dados.",
   cpfJaExiste: "O cpf já existe na nossa base de dados.",
-  idInvalido: "Insira um ID válido para 'categoria_id'.",
-  valorInvalido: "Insira um número válido para 'valor'.",
-  quantidadeInvalida: "Insira um número válido para 'quantidade_estoque'.",
   cepInvalido: "CEP inválido.",
   cpfInvalido: "CPF inválido.",
   estadoInvalido: "O campo 'estado' deverá ter no máximo dois caracteres.",
+  cpfInexistente: "O cpf informado não existe no banco de dados.",
+  idInexistente: "O id informado não existe no banco de dados.",
+  idInvalido: "O id informado não é um número válido.",
+
 };
 const errosProduto = {
   produtoJaExiste: "O produto já existe no banco de dados.",
