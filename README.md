@@ -38,20 +38,32 @@ O deploy da aplicação está disponível no cyclic:
 
 ## 📝 Sobre o projeto
 
-Este projeto consiste em uma API REST desenvolvida para simular operações em um sistema de compra e venda (PDV). O projeto foi desenvolvido em grupo e dividido em três slipts, isto é três etapas. O objetivo desse projeto é fornecer uma base para a construção de um sistema completo de um PDV, seguindo os padrões REST, banco de dados relacional utilizando Deploy.
+Este projeto consiste em uma API REST desenvolvida para simular operações em um sistema de compra e venda (PDV). O projeto foi desenvolvido em grupo e dividido em três sprints, isto é, três etapas. O objetivo desse projeto é fornecer uma base para a construção de um sistema completo de um PDV, seguindo os padrões REST, banco de dados relacional utilizando Deploy.
 
 ## 📋 Funcionalidades
 
 Nesse projeto API REST - PDV é possível:
 
-- Slipt 01:
+- Sprint 01:
     - Listar categorias (sem necessidade de login);
     - Criar conta de usuário;
     - Fazer login;
     - Detalhar conta de usuário (necessário login);
     - Editar conta de usuário (necessário login).
-- Slipt 02: Em breve.
-- Slipt 03: Em breve.
+  
+- Sprint 02: 
+  - Todas as funcionalidades (endpoints) dessa sprint exigem o token de autenticação do usuário logado.
+    - Cadastrar Produto;
+    - Editar dados do produto;
+    - Listar Produtos;
+    - Detalhar Produto;
+    - Excluir Produto por ID;
+    - Cadastrar Cliente;
+    - Editar dados do cliente;
+    - Listar Clientes;
+    - Detalhar Cliente por ID.
+  
+- Sprint 03: Em breve.
 
 ## ▶️ Como executar o projeto
 
@@ -64,11 +76,11 @@ Essa API REST foi organizada de forma a manter a clareza e a modularidade do pro
 - Pasta `controller`: Esta pasta abriga todas as funções responsáveis por executar as operações relacionadas às rotas da API;
 - Pasta `routes`: Esta pasta contém todos os arquivos onde as rotas da API estão definidas;
 - Pasta `database`: Aqui são armazenados os arquivos utilizados para construir as tabelas do banco de dados usando PostgreSQL;
-- Pasta `middleware`: Contém as definições de middlewares, que são funções intermediárias que podem ser executadas antes das rotas ou após as requisições;
+- Pasta `middleware`: Contém as definições de `middlewares`, que são funções intermediárias que podem ser executadas antes das rotas ou após as requisições;
 - Pasta `constants`: Esta pasta é responsável por armazenar as mensagens de erros e de sucesso do projeto;
-- Pasta `schemas`: Nesta pasta, estão armazenados os esquemas de dados que definem a estrutura e as restrições dos objetos de dados utilizados pela API;
+- Pasta `schemas`: Nesta pasta, estão armazenados os `schemas` que definem a estrutura e as restrições dos objetos de dados utilizados pela API;
 
-- Fora da pasta `src`, na raiz do projeto, contém o arquivo `.env.exemple`. Esse arquivo é um modelo Este arquivo é um modelo para configurar as variáveis de ambiente necessárias para o funcionamento adequado da aplicação. Ele fornece um esboço das variáveis que precisam ser configuradas e seus respectivos valores.
+- Fora da pasta `src`, na raiz do projeto, contém o arquivo `.env.exemple`. Esse arquivo é um modelo para configurar as variáveis de ambiente necessárias para o funcionamento adequado da aplicação.
 
 ### 🛠️ Pré-requisitos
 
@@ -100,7 +112,7 @@ npm run dev
    
 ⚠️ Ademais, é possível importar o arquivo `insomnia.json` localizado na raiz desse projeto projeto. Esse arquivo contém as configurações pré-definidas necessárias para testar as rotas da API de maneira fácil e eficiente.
 
-Por fim, certifique-se de verificar a documentação da API para entender melhor as rotas disponíveis e os formatos de dados aceitos.
+Por fim, certifique-se de verificar no projeto as rotas disponíveis e os formatos de dados aceitos.
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -143,7 +155,7 @@ git push origin my-feature
 ## 🧙‍♂️ Autoras
 
 Esse projeto Back-end foi desenvolvido em grupo como desafio do modulo 5 do curso de Desenvolvimento de Software - Foco em Back-end da [Cubos Academy](https://cubos.academy/). ✨
-As responsabilidades e desenvolvimento de cada slipt das integrantes foram:
+As responsabilidades das integrantes em cada uma das sprints foram:
 
 ### 1. Primeira Sprint:
 
