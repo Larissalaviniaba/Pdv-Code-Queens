@@ -3,10 +3,6 @@ const knex = require("../../conexaoBanco");
 const { errosGerais, errosCliente } = require("../../constants/erroMensagens");
 const { sucessoCliente } = require("../../constants/sucessoMensagens");
 const validarCPF = require("../../utils/validarCPF");
-const {
-  seCampoExiste,
-  seCampoNaoExiste,
-} = require("../../utils/verificarCampo");
 
 const atualizarCliente = async (req, res) => {
   const { id } = req.params;
@@ -16,16 +12,24 @@ const atualizarCliente = async (req, res) => {
     const emailCliente = await knex("clientes")
       .select("id")
       .where({ email: email })
-      .where("id", "<>", id);
+      .where("id", "<>", id)
+      .first();
 
     const cpfCliente = await knex("clientes")
       .select("id")
       .where({ cpf: cpf })
-      .where("id", "<>", id);
+      .where("id", "<>", id)
+      .first();
 
-    seCampoExiste(res, emailCliente, 409, errosCliente.emailJaExiste);
-    seCampoExiste(res, cpfCliente, 409, errosCliente.cpfJaExiste);
-    seCampoNaoExiste(res, validarCPF(cpf), 404, errosCliente.cpfInvalido);
+    if (emailCliente) {
+      return res.status(409).json({ mensagem: errosCliente.emailJaExiste });
+    }
+    if (cpfCliente) {
+      return res.status(409).json({ mensagem: errosCliente.cpfJaExiste });
+    }
+    if (!validarCPF(cpf)) {
+      return res.status(404).json({ mensagem: errosCliente.cpfInvalido });
+    }
 
     if (
       (cep || rua || numero || bairro || cidade || estado) &&

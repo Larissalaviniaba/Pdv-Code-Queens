@@ -10,6 +10,7 @@ const clienteSchema = joi.object({
     "any.required": errosGerais.camposObrigatorios,
     "string.empty": errosGerais.camposObrigatorios,
     "string.trim": errosGerais.stringComEspaço,
+    "string.base": errosGerais.campoString
   }),
   email: joi.string().email().trim().required().messages({
     "string.email": errosUsuario.emailInvalido,
@@ -26,6 +27,7 @@ const clienteSchema = joi.object({
       "string.empty": errosGerais.camposObrigatorios,
       "string.pattern.base": errosCliente.cpfInvalido,
       "string.max": errosCliente.cpfInvalido,
+      "string.base": errosGerais.campoString
     }),
   cep: joi
     .string()
@@ -35,26 +37,33 @@ const clienteSchema = joi.object({
       "string.empty": errosCliente.enderecoInvalido,
       "string.pattern.base": errosCliente.cepInvalido,
       "string.max": errosCliente.cepInvalido,
+      "string.base": errosGerais.campoString
   }),
   rua: joi.string().trim().messages({
     "string.empty": errosCliente.enderecoInvalido,
     "string.trim": errosGerais.campoInvalido,
+    "string.base": errosGerais.campoString
   }),
   numero: joi.string().trim().messages({
     "string.empty": errosCliente.enderecoInvalido,
     "string.trim": errosGerais.stringComEspaço,
+    "string.base": errosGerais.campoString
   }),
   bairro: joi.string().trim().messages({
     "string.empty": errosCliente.enderecoInvalido,
     "string.trim": errosGerais.stringComEspaço,
+    "string.base": errosGerais.campoString
   }),
   cidade: joi.string().trim().messages({
     "string.empty": errosCliente.enderecoInvalido,
     "string.trim": errosGerais.stringComEspaço,
+    "string.base": errosGerais.campoString
   }),
-  estado: joi.string().trim().max(2).messages({
+  estado: joi.string().trim().regex(/^[A-Za-z]+$/).max(2).messages({
     "string.empty": errosCliente.enderecoInvalido,
     "string.max": errosCliente.estadoInvalido,
+    'string.pattern.base': errosCliente.estadoInvalido,
+    "string.base": errosGerais.campoString
   }),
 });
 

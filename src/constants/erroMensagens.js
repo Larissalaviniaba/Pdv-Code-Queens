@@ -7,11 +7,11 @@ const errosCliente = {
   cpfJaExiste: "O cpf já existe na nossa base de dados.",
   cepInvalido: "CEP inválido.",
   cpfInvalido: "CPF inválido.",
-  estadoInvalido: "O campo 'estado' deverá ter no máximo dois caracteres.",
+  estadoInvalido: "O estado informado não existe.",
   cpfInexistente: "O cpf informado não existe no banco de dados.",
-  idInexistente: "O id informado não existe no banco de dados.",
+  idInexistente: "O cliente informado não existe no banco de dados.",
   idInvalido: "O id informado não é um número válido.",
-  enderecoInvalido: "Informe o enddereço completo."
+  enderecoInvalido: "Informe o enddereço completo.",
 };
 const errosProduto = {
   produtoJaExiste: "O produto já existe no banco de dados.",
@@ -40,6 +40,7 @@ const errosGerais = {
   campoInvalido: "O campo informado não pode conter espaços em branco.",
   stringComEspaço:
     "Os campos não podem conter espaços no início e no final do texto.",
+    campoString: "Os campos inormados precisam ser em formato de texto."
 };
 
 
