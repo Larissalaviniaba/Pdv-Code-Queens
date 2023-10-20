@@ -11,6 +11,7 @@ const errosCliente = {
   cepInvalido: "CEP inválido.",
   cpfInvalido: "CPF inválido.",
   estadoInvalido: "O campo 'estado' deverá ter no máximo dois caracteres.",
+  enderecoInvalido: "Informe o endereço completo."
 };
 const errosProduto = {
   produtoJaExiste: "O produto já existe no banco de dados.",
