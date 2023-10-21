@@ -4,6 +4,7 @@ const {
   errosCategoria,
   errosProduto,
 } = require("../constants/erroMensagens");
+const { sucessoProduto } = require("../constants/sucessoMensagens");
 const centavosParaReais = require("../utils/centavosParaReais");
 
 const listarProdutos = async (req, res) => {
