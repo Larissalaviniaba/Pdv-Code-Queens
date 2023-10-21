@@ -14,8 +14,8 @@ const {
 
 rotas.use(verificarUsuarioLogado);
 rotas.post("/produto", validarRequisicao(produtoSchema), cadastrarProduto);
-rotas.get("/produto", listarProdutos);
-rotas.get("/produto/:id", detalharProdutos);
+rotas.get("/produto", verificarUsuarioLogado, listarProdutos);
+rotas.get("/produto/:id", detalharProdutos );
 rotas.put("/produto/:id", validarRequisicao(produtoSchema), atualizarProduto);
 rotas.delete("/produto/:id", deletarProduto);
 
