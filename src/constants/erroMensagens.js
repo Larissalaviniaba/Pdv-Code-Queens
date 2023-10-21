@@ -11,7 +11,7 @@ const errosCliente = {
   cpfInexistente: "O cpf informado não existe no banco de dados.",
   idInexistente: "O cliente informado não existe no banco de dados.",
   idInvalido: "O id informado não é um número válido.",
-  enderecoInvalido: "Informe o enddereço completo.",
+  enderecoInvalido: "Informe o endereço completo.",
 };
 const errosProduto = {
   produtoJaExiste: "O produto já existe no banco de dados.",

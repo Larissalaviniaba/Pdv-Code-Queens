@@ -72,13 +72,6 @@ const cadastrarCliente = async (req, res) => {
       return res.status(404).json({ mensagem: errosCliente.cpfInvalido });
     }
 
-    if (
-      (cep || rua || numero || bairro || cidade || estado) &&
-      (!cep || !rua || !numero || !bairro || !cidade || !estado)
-    ) {
-      return res.status(400).json({ mensagem: errosCliente.enderecoInvalido });
-    }
-
     await knex("clientes").insert({
       nome,
       email,
