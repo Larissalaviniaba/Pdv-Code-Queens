@@ -19,6 +19,7 @@ const errosProduto = {
   idNaoInformado: "O id do produto deve ser informado.",
   idInvalido: "Insira um ID válido para 'categoria_id'.",
   valorInvalido: "Insira um número válido para 'valor'.",
+  valorEmCentavos: "O valor do produto precisa ser convertido para centavos",
   quantidadeInvalida: "Insira um número válido para 'quantidade_estoque'.",
 };
 const errosUsuario = {

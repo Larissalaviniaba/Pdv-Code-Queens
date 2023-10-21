@@ -4,7 +4,7 @@ const knex = require("../conexaoBanco");
 const { sucessoUsuario } = require("../constants/sucessoMensagens");
 const { errosGerais, errosUsuario } = require("../constants/erroMensagens");
 
-async function criarUsuario(req, res) {
+const criarUsuario = async (req, res) => {
   const { nome, email, senha } = req.body;
 
   try {
@@ -30,16 +30,14 @@ async function criarUsuario(req, res) {
     return res.status(500).json({ mensagem: errosGerais.erroServidor });
   }
 }
-
-async function detalharPerfil(req, res) {
+const detalharPerfil = async (req, res) => {
   try {
     return res.status(201).json(req.usuario);
   } catch (error) {
     return res.status(500).json({ mensagem: errosGerais.erroServidor });
   }
 }
-
-async function editarPerfil(req, res) {
+const editarPerfil = async (req, res) => {
   const { nome, email, senha } = req.body;
 
   try {

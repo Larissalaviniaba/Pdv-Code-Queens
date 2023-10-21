@@ -13,8 +13,9 @@ const produtoSchema = joi.object({
     "number.integer": errosProduto.quantidadeInvalida,
     "number.min": errosProduto.quantidadeInvalida,
   }),
-  valor: joi.number().positive().required().messages({
+  valor: joi.number().integer().positive().required().messages({
     "any.required": errosGerais.camposObrigatorios,
+    "number.integer": errosProduto.valorEmCentavos,
     "number.positive": errosProduto.valorInvalido,
   }),
   descricao: joi.string().trim().required().messages({

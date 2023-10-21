@@ -6,7 +6,6 @@ const knex = require("../conexaoBanco");
 const { errosGerais, errosLogin } = require("../constants/erroMensagens");
 
 const efetuarLogin = async (req, res) => {
-  
   try {
     const { email, senha } = req.body;
 
