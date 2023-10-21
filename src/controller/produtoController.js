@@ -4,6 +4,7 @@ const {
   errosCategoria,
   errosProduto,
 } = require("../constants/erroMensagens");
+const centavosParaReais = require("../utils/centavosParaReais");
 
 const listarProdutos = async (req, res) => {
   try {
@@ -39,7 +40,7 @@ const listarProdutos = async (req, res) => {
           id: item.produtos_id,
           descricao: item.produtos_descricao,
           quantidade: item.produtos_quantidade,
-          valor: item.produtos_valor,
+          valor: centavosParaReais(item.produtos_valor),
           categoria: {
             id: item.categoria_id,
             descricao: item.categoria,
@@ -66,7 +67,7 @@ const listarProdutos = async (req, res) => {
           id: item.produtos_id,
           descricao: item.produtos_descricao,
           quantidade: item.produtos_quantidade,
-          valor: item.produtos_valor,
+          valor: centavosParaReais(item.produtos_valor),
           categoria: {
             id: item.categoria_id,
             descricao: item.categoria,
@@ -118,7 +119,7 @@ const detalharProdutos = async (req, res) => {
         id: detalhar.produtos_id,
         descricao: detalhar.produtos_descricao,
         quantidade: detalhar.produtos_quantidade,
-        valor: detalhar.produtos_valor,
+        valor: centavosParaReais(detalhar.produtos_valor),
         categoria: {
           id: detalhar.categoria_id,
           descricao: detalhar.categoria,
