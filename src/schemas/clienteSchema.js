@@ -21,12 +21,14 @@ const clienteSchema = joi.object({
     .string()
     .pattern(/^[0-9]+$/)
     .max(11)
+    .min(11)
     .required()
     .messages({
       "any.required": errosGerais.camposObrigatorios,
       "string.empty": errosGerais.camposObrigatorios,
       "string.pattern.base": errosCliente.cpfInvalido,
       "string.max": errosCliente.cpfInvalido,
+      "string.min": errosCliente.cpfInvalido,
       "string.base": errosGerais.campoString
     }),
   cep: joi
