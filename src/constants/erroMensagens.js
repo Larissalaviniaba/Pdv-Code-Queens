@@ -22,6 +22,8 @@ const errosProduto = {
   valorEmCentavos: "O valor do produto precisa ser convertido para centavos",
   quantidadeInvalida: "Insira um número válido para 'quantidade_estoque'.",
 };
+
+
 const errosUsuario = {
   usuarioErro: "Usuário não pode ser criado!",
   usuarioJaExiste: "Usuário já existe na nossa base de dados.",
