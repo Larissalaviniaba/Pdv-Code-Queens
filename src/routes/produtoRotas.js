@@ -7,9 +7,9 @@ const verificarUsuarioLogado = require("../middleware/autenticacaoMiddleware");
 
 const { listarProdutos, detalharProdutos } = require('../controller/produtoController')
 
-const cadastrarProduto = require("../controller/produto/cadastrar");
-const atualizarProduto = require("../controller/produto/atualizar");
-const deletarProduto = require("../controller/produto/deletar");
+const {cadastrarProduto} = require("../controller/produto/cadastrar");
+const {atualizarProduto} = require("../controller/produto/atualizar");
+const {deletarProduto} = require("../controller/produto/deletar");
 
 // rotas.use(verificarUsuarioLogado);
 rotas.post("/produto", validarRequisicao(produtoSchema));
