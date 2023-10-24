@@ -1,4 +1,4 @@
-const multer = require("../../multer");
+const multer = require("../../config/multer");
 
 const cadastrarProduto = async (req, res) => {
   const { descricao, categoria_id, quantidade_estoque, valor } = req.body;

@@ -1,5 +1,5 @@
 const express = require("express");
-const multer = require("../multer");
+const multer = require("../config/multer");
 const rotas = express();
 
 const produtoSchema = require("../schemas/produtoSchema");
