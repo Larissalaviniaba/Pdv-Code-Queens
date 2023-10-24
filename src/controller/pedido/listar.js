@@ -2,4 +2,4 @@ const listarPedidos = async (req, res) => {
  
 };
 
-module.export = listarPedidos;
+module.exports = { listarPedidos };
