@@ -1,4 +1,4 @@
-const knex = require("../conexaoBanco");
+const knex = require("../config/knexConfig");
 const { erroServidor } = require("../constants/erroMensagens");
 
 const listarCategorias = async (req, res) => {

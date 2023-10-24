@@ -1,4 +1,5 @@
-const knex = require("../conexaoBanco");
+const knex = require("../config/knexConfig");
+
 const {
   errosGerais,
   errosCategoria,

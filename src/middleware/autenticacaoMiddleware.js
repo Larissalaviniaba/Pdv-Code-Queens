@@ -1,7 +1,7 @@
-const knex = require("../conexaoBanco");
+const knex = require("../config/knexConfig");
 const jwt = require("jsonwebtoken");
 const { errosGerais } = require("../constants/erroMensagens");
-const senhaJwt = require("../senhaJwt");
+const senhaJwt = require("../config/senhaJwtConfig");
 
 const verificarUsuarioLogado = async (req, res, next) => {
   const { authorization } = req.headers;

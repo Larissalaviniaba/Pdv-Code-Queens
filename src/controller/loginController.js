@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const senhaJwt = require("../senhaJwt");
-const knex = require("../conexaoBanco");
+const senhaJwt = require("../config/senhaJwtConfig");
+const knex = require("../config/knexConfig");
 
 const { errosGerais, errosLogin } = require("../constants/erroMensagens");
 
