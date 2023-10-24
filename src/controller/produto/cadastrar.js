@@ -40,4 +40,4 @@ const cadastrarProduto = async (req, res) => {
     return res.status(500).json({ mensagem: errosGerais.erroServidor });
   }
 };
-module.export = cadastrarProduto;
+module.exports = { cadastrarProduto };

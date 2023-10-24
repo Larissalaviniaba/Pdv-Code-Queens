@@ -14,4 +14,4 @@ const deletarProduto = async (req, res) => {
     return res.status(400).json({ mensagem: errosGerais.erroServidor });
   }
 };
-module.export = deletarProduto
+module.exports = {deletarProduto};
