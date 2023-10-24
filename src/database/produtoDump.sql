@@ -7,3 +7,6 @@ CREATE TABLE produtos(
     valor INT NOT NULL,
     categoria_id INT REFERENCES categorias(id)
 );
+
+ALTER TABLE produtos
+ADD produto_imagem TEXT;
