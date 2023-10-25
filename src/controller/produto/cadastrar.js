@@ -11,10 +11,10 @@ const cadastrarProduto = async (req, res) => {
   const { file } = req;
   //const { descricao, categoria_id, quantidade_estoque, valor } = req.body;
 
-  const descricao = "Heaset - P3";
-  const categoria_id = 1;
-  const quantidade_estoque = 1;
-  const valor = 27000;
+  // const descricao = "Pantalona Preta Com fenda";
+  // const categoria_id = 9;
+  // const quantidade_estoque = 1;
+  // const valor = 159999;
 
   try {
     const buscarCategoria = await knex("categorias")
@@ -39,17 +39,11 @@ const cadastrarProduto = async (req, res) => {
       });
     }
 
-    await knex("produtos").insert({
-      categoria_id,
-      quantidade_estoque,
-      valor,
-      descricao,
-    });
-
     if (file) {
       const ultimoProdutoCadastrado = await knex("produtos")
         .max("id as maxId")
-        .first();
+        .first()
+        .returning("*");
       const produtoCadastradoId = ultimoProdutoCadastrado.maxId;
 
       const urlImagem = await uploadImagemUtils(
@@ -58,21 +52,32 @@ const cadastrarProduto = async (req, res) => {
         produtoCadastradoId
       );
 
-      return res.status(201).json({
-        descricao: descricao,
-        quantidade_estoque: quantidade_estoque,
-        valor: valor,
-        categoria_id: categoria_id,
-        produto_imagem: urlImagem,
-      });
+      const produtoCadastradoComImagem = await knex("produtos")
+        .insert({
+          descricao,
+          categoria_id,
+          quantidade_estoque,
+          valor,
+          produto_imagem: urlImagem,
+        })
+        .returning("*");
+
+      return res.status(201).json(produtoCadastradoComImagem[0]);
     }
 
-    return res.status(201).json({
-      descricao: descricao,
-      quantidade_estoque: quantidade_estoque,
-      valor: valor,
-      categoria_id: categoria_id,
-    });
+    const produtoCadastrado = await knex("produtos")
+      .insert({
+        categoria_id,
+        quantidade_estoque,
+        valor,
+        descricao,
+      })
+      .returning("*");
+
+    const { produto_imagem: _, ...produtoCadastradoSemImagem } =
+      produtoCadastrado[0];
+
+    return res.status(201).json(produtoCadastradoSemImagem);
   } catch (error) {
     return res.status(500).json({ mensagem: errosGerais.erroServidor });
   }

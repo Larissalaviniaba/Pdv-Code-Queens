@@ -1,5 +1,4 @@
 const knex = require("../../config/knexConfig");
-const s3 = require("../../config/awsConfig");
 const {
   errosGerais,
   errosCategoria,
@@ -15,10 +14,10 @@ const atualizarProduto = async (req, res) => {
   const { id } = req.params;
   //const { descricao, categoria_id, quantidade_estoque, valor } = req.body;
 
-  const descricao = "Vestido - Estampa de Cereja";
-  const categoria_id = 9;
-  const quantidade_estoque = 1;
-  const valor = 149999;
+  // const descricao = "Vestido - Estampa de Cereja";
+  // const categoria_id = 9;
+  // const quantidade_estoque = 2;
+  // const valor = 149999;
 
   try {
     const buscarProduto = await knex("produtos").where({ id: id }).first();
@@ -52,12 +51,15 @@ const atualizarProduto = async (req, res) => {
         .json({ mensagem: errosCategoria.categoriaInvalida });
     }
 
-    await knex("produtos").where({ id: id }).update({
-      descricao,
-      quantidade_estoque,
-      valor,
-      categoria_id,
-    });
+    const produtoAtualizado = await knex("produtos")
+      .where({ id: id })
+      .update({
+        descricao,
+        quantidade_estoque,
+        valor,
+        categoria_id,
+      })
+      .returning("*");
 
     if (file) {
       const imagemCadastrada = await knex("produtos")
@@ -90,12 +92,9 @@ const atualizarProduto = async (req, res) => {
       }
     }
 
-    return res.status(200).json({
-      descricao: descricao,
-      quantidade_estoque: quantidade_estoque,
-      valor: valor,
-      categoria_id: categoria_id,
-    });
+    const { id: _, ...produtoAtualizadoSemId } = produtoAtualizado[0];
+
+    return res.status(200).json(produtoAtualizadoSemId);
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({ mensagem: errosGerais.erroServidor });

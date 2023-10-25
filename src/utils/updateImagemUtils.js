@@ -11,8 +11,8 @@ const atualizarImagem = async (file, categoria_id, produtoId) => {
     .putObject({
       Bucket: process.env.BACKBLAZE_BUCKET,
       Key: `produtos/${categoriaProduto.descricao}/${produtoId}/${file.originalname}`,
-      ContentType: file.mimetype,
       Body: file.buffer,
+      ContentType: file.mimetype,
     })
     .promise();
 
