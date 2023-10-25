@@ -11,10 +11,10 @@ const cadastrarProduto = async (req, res) => {
   const { file } = req;
   //const { descricao, categoria_id, quantidade_estoque, valor } = req.body;
 
-  // const descricao = "Pantalona Preta Com fenda";
-  // const categoria_id = 9;
-  // const quantidade_estoque = 1;
-  // const valor = 159999;
+  const descricao = "Vestido - estampado com manga";
+  const categoria_id = 9;
+  const quantidade_estoque = 1;
+  const valor = 169999;
 
   try {
     const buscarCategoria = await knex("categorias")
@@ -44,7 +44,7 @@ const cadastrarProduto = async (req, res) => {
         .max("id as maxId")
         .first()
         .returning("*");
-      const produtoCadastradoId = ultimoProdutoCadastrado.maxId;
+      const produtoCadastradoId = ultimoProdutoCadastrado.maxId + 1;
 
       const urlImagem = await uploadImagemUtils(
         file,
