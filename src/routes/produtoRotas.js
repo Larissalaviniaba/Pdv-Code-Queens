@@ -1,4 +1,5 @@
 const express = require("express");
+const multer = require("../config/multerConfig");
 const rotas = express();
 
 const produtoSchema = require("../schemas/produtoSchema");
@@ -15,7 +16,7 @@ const { atualizarProduto } = require("../controller/produto/atualizar");
 const { deletarProduto } = require("../controller/produto/deletar");
 
 // rotas.use(verificarUsuarioLogado);
-rotas.post("/produto", validarRequisicao(produtoSchema));
+rotas.post("/produto", multer.single("produto_imagem"), cadastrarProduto);
 rotas.get("/produto", listarProdutos);
 rotas.get("/produto/:id", detalharProdutos);
 rotas.put("/produto/:id", validarRequisicao(produtoSchema));
