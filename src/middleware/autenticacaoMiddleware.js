@@ -12,7 +12,7 @@ const verificarUsuarioLogado = async (req, res, next) => {
     });
   }
 
-  const token = authorization.split(" ")[1];
+  const token = authorization;
 
   try {
     const { id } = jwt.verify(token, senhaJwt);
