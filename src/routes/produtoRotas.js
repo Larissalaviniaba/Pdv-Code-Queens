@@ -19,7 +19,7 @@ const { deletarProduto } = require("../controller/produto/deletar");
 rotas.post("/produto", multer.single("produto_imagem"), cadastrarProduto);
 rotas.get("/produto", listarProdutos);
 rotas.get("/produto/:id", detalharProdutos);
-rotas.put("/produto/:id", validarRequisicao(produtoSchema));
+rotas.put("/produto/:id", multer.single("produto_imagem"), atualizarProduto);
 rotas.delete("/produto/:id");
 
 module.exports = rotas;

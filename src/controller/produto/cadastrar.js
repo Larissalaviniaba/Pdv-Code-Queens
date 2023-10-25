@@ -1,15 +1,20 @@
 const knex = require("../../config/knexConfig");
-const s3 = require("../../config/awsConfig");
 const {
   errosGerais,
   errosCategoria,
   errosProduto,
 } = require("../../constants/erroMensagens");
-const { sucessoProduto } = require("../../constants/sucessoMensagens");
+
+const uploadImagemUtils = require("../../utils/uploadImagemUtils");
 
 const cadastrarProduto = async (req, res) => {
   const { file } = req;
-  const { descricao, categoria_id, quantidade_estoque, valor } = req.body;
+  //const { descricao, categoria_id, quantidade_estoque, valor } = req.body;
+
+  const descricao = "Heaset - P3";
+  const categoria_id = 1;
+  const quantidade_estoque = 1;
+  const valor = 27000;
 
   try {
     const buscarCategoria = await knex("categorias")
@@ -25,12 +30,12 @@ const cadastrarProduto = async (req, res) => {
 
     const buscarProduto = await knex("produtos")
       .where({ descricao: descricao })
-      .select("descricao", "quantidade_estoque")
+      .select("descricao")
       .first();
 
     if (buscarProduto) {
       return res.status(409).json({
-        mensagem: errosProduto.produtoJaExiste,
+        mensagem: "O nome do produto informado já existe no banco de dados.",
       });
     }
 
@@ -41,42 +46,34 @@ const cadastrarProduto = async (req, res) => {
       descricao,
     });
 
-    const ultimoProdutoCadastrado = await knex("produtos")
-      .max("id as maxId")
-      .first();
-    const produtoCadastradoId = ultimoProdutoCadastrado.maxId;
-
     if (file) {
-      const categoriaProduto = await knex("categorias")
-        .select("descricao")
-        .where({ id: categoria_id })
+      const ultimoProdutoCadastrado = await knex("produtos")
+        .max("id as maxId")
         .first();
+      const produtoCadastradoId = ultimoProdutoCadastrado.maxId;
 
-      await s3
-        .upload({
-          Bucket: process.env.BACKBLAZE_BUCKET,
-          Key: `produtos/${categoriaProduto.descricao}/${file.originalname}`,
-          Body: file.buffer,
-          ContentType: file.mimetype,
-        })
-        .promise();
-
-      const urlImagem = `https://${process.env.BACKBLAZE_BUCKET}.${process.env.ENDPOINT_S3}/produtos/${categoriaProduto.descricao}/${file.originalname}`;
-
-      await knex("produtos")
-        .update({ produto_imagem: urlImagem })
-        .where({ id: produtoCadastradoId });
+      const urlImagem = await uploadImagemUtils(
+        file,
+        categoria_id,
+        produtoCadastradoId
+      );
 
       return res.status(201).json({
-        mensagem: sucessoProduto.produtoCadastrado,
+        descricao: descricao,
+        quantidade_estoque: quantidade_estoque,
+        valor: valor,
+        categoria_id: categoria_id,
+        produto_imagem: urlImagem,
       });
     }
 
     return res.status(201).json({
-      mensagem: sucessoProduto.produtoCadastrado,
+      descricao: descricao,
+      quantidade_estoque: quantidade_estoque,
+      valor: valor,
+      categoria_id: categoria_id,
     });
   } catch (error) {
-    console.log(error.message);
     return res.status(500).json({ mensagem: errosGerais.erroServidor });
   }
 };
