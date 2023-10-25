@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const knex = require("../conexaoBanco");
+const knex = require("../config/knexConfig");
 
 const { sucessoUsuario } = require("../constants/sucessoMensagens");
 const { errosGerais, errosUsuario } = require("../constants/erroMensagens");
@@ -29,14 +29,14 @@ const criarUsuario = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ mensagem: errosGerais.erroServidor });
   }
-}
+};
 const detalharPerfil = async (req, res) => {
   try {
     return res.status(201).json(req.usuario);
   } catch (error) {
     return res.status(500).json({ mensagem: errosGerais.erroServidor });
   }
-}
+};
 const editarPerfil = async (req, res) => {
   const { nome, email, senha } = req.body;
 
@@ -62,7 +62,7 @@ const editarPerfil = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ mensagem: errosGerais.erroServidor });
   }
-}
+};
 
 module.exports = {
   criarUsuario,
