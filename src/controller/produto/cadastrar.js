@@ -9,12 +9,7 @@ const uploadImagemUtils = require("../../utils/uploadImagemUtils");
 
 const cadastrarProduto = async (req, res) => {
   const { file } = req;
-  //const { descricao, categoria_id, quantidade_estoque, valor } = req.body;
-
-  const descricao = "Heaset - P3";
-  const categoria_id = 1;
-  const quantidade_estoque = 1;
-  const valor = 27000;
+  const { descricao, categoria_id, quantidade_estoque, valor } = req.body;
 
   try {
     const buscarCategoria = await knex("categorias")
