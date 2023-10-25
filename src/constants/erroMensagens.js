@@ -16,13 +16,18 @@ const errosCliente = {
 const errosProduto = {
   produtoJaExiste: "O produto já existe no banco de dados.",
   produtoInvalido: "O produto com o ID informado não existe no banco de dados.",
-  idNaoInformado: "O id do produto deve ser informado.",
+  idNaoInformado: "O ID do produto deve ser informado.",
   idInvalido: "Insira um ID válido para 'categoria_id'.",
   valorInvalido: "Insira um número válido para 'valor'.",
   valorEmCentavos: "O valor do produto precisa ser convertido para centavos",
   quantidadeInvalida: "Insira um número válido para 'quantidade_estoque'.",
 };
 
+const errosPedidos = {
+  pedidoInexistente: "O ID do cliente informado não tem pedido cadastrado",
+
+
+}
 
 const errosUsuario = {
   usuarioErro: "Usuário não pode ser criado!",
@@ -54,4 +59,5 @@ module.exports = {
   errosProduto,
   errosCliente,
   errosCategoria,
+  errosPedidos
 };
