@@ -6,26 +6,18 @@ const {
 } = require("../../constants/erroMensagens");
 
 const uploadImagemUtils = require("../../utils/uploadImagemUtils");
-const deletarImagem = require("../../utils/deleteImagemUtils");
 const atualizarImagem = require("../../utils/updateImagemUtils");
 
 const atualizarProduto = async (req, res) => {
   const { file } = req;
   const { id } = req.params;
-  //const { descricao, categoria_id, quantidade_estoque, valor } = req.body;
-
-  // const descricao = "Vestido - Estampa de Cereja";
-  // const categoria_id = 9;
-  // const quantidade_estoque = 2;
-  // const valor = 149999;
+  const { descricao, categoria_id, quantidade_estoque, valor } = req.body;
 
   try {
     const buscarProduto = await knex("produtos").where({ id: id }).first();
 
     if (!buscarProduto) {
-      return res.status(200).json({
-        mensagem: errosProduto.produtoInvalido,
-      });
+      return res.status(200).json({ mensagem: errosProduto.produtoInvalido });
     }
 
     const buscarProdutoNome = await knex("produtos")

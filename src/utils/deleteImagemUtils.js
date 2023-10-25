@@ -14,3 +14,14 @@ const s3 = require("../config/awsConfig");
 //     })
 //     .promise();
 // };
+
+const atualizarImagem = async (req, id) => {
+  await s3
+    .putObject({
+      Bucket: process.env.BACKBLAZE_BUCKET,
+      Key: `produtos/${categoriaProduto.descricao}/${produtoId}/${file.originalname}`,
+      ContentType: file.mimetype,
+      Body: file.buffer,
+    })
+    .promise();
+};
