@@ -7,16 +7,18 @@ const {
 } = require("../../constants/erroMensagens");
 
 const uploadImagemUtils = require("../../utils/uploadImagemUtils");
+const deletarImagem = require("../../utils/deleteImagemUtils");
+const atualizarImagem = require("../../utils/updateImagemUtils");
 
 const atualizarProduto = async (req, res) => {
   const { file } = req;
   const { id } = req.params;
   //const { descricao, categoria_id, quantidade_estoque, valor } = req.body;
 
-  const descricao = "Saia";
+  const descricao = "Vestido - Estampa de Cereja";
   const categoria_id = 9;
   const quantidade_estoque = 1;
-  const valor = 45001;
+  const valor = 149999;
 
   try {
     const buscarProduto = await knex("produtos").where({ id: id }).first();
@@ -66,17 +68,25 @@ const atualizarProduto = async (req, res) => {
       if (!imagemCadastrada) {
         const urlImagem = await uploadImagemUtils(file, categoria_id, id);
 
-        return res.status(200).json({
-          descricao: descricao,
-          quantidade_estoque: quantidade_estoque,
-          valor: valor,
-          categoria_id: categoria_id,
-          produto_imagem: urlImagem,
-        });
+        const produtoAtualizado = await knex("produtos")
+          .update({ produto_imagem: urlImagem })
+          .where({ id: produtoId })
+          .returning("*");
+
+        const { id: _, ...produtoAtualizadoSemId } = produtoAtualizado[0];
+
+        return res.status(200).json(produtoAtualizadoSemId);
       } else {
-        return res.status(400).json({
-          mensagem: "Já existe uma imagem cadastrada para o produto informado.",
-        });
+        const urlNovaImagem = await atualizarImagem(file, categoria_id, id);
+
+        const produtoAtualizado = await knex("produtos")
+          .update({ produto_imagem: urlNovaImagem })
+          .where({ id })
+          .returning("*");
+
+        const { id: _, ...produtoAtualizadoSemId } = produtoAtualizado[0];
+
+        return res.status(200).json(produtoAtualizadoSemId);
       }
     }
 
@@ -87,6 +97,7 @@ const atualizarProduto = async (req, res) => {
       categoria_id: categoria_id,
     });
   } catch (error) {
+    console.log(error.message);
     return res.status(500).json({ mensagem: errosGerais.erroServidor });
   }
 };
