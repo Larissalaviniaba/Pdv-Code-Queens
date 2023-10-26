@@ -2,7 +2,7 @@ const joi = require("joi");
 const { errosGerais, errosProduto } = require("../constants/erroMensagens");
 
 const pedidoSchema = joi.object({
-  cliente_id: joi.required().trim().messages({
+  cliente_id: joi.string().trim().required().messages({
     "any.required": errosGerais.camposObrigatorios,
     "string.trim": errosGerais.stringComEspaço,
     "string.empty": errosGerais.camposObrigatorios,
