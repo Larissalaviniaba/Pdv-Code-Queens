@@ -1,18 +1,23 @@
-const knex = require("../../conexaoBanco");
+const knex = require("../../config/knexConfig");
 const calcularValorTotal = require("../../utils/valorTotalPedido");
+const centavosParaReais = require("../../utils/centavosParaReais");
+const compiladorHtml = require("../../emails/compiladorTemplate");
+const enviarEmail = require("../../emails/enviarEmail");
+const { errosGerais, errosCliente, errosProduto } = require('../../constants/erroMensagens')
+const { sucessoPedido } = require('../../constants/sucessoMensagens')
 
 const cadastrarPedido = async (req, res) => {
   const { cliente_id, observacao, pedido_produtos } = req.body;
 
   try {
     const cliente = await knex("clientes")
-      .select("id")
+      .select("id", "nome", "email")
       .where({ id: cliente_id })
       .first();
 
     if (!cliente) {
       return res.status(404).json({
-        mensagem: "O cliente não existe na nossa base de dados.",
+        mensagem: errosCliente.idInexistente,
       });
     }
     const idDeProdutosNoPedido = pedido_produtos.map(
@@ -22,14 +27,15 @@ const cadastrarPedido = async (req, res) => {
       .select("id", "quantidade_estoque", "valor")
       .whereIn("id", idDeProdutosNoPedido);
 
-    const idsProdutosInexistentes = produtosCadastrados.filter(
-      (produtoCadastrado) =>
-        !idDeProdutosNoPedido.includes(produtoCadastrado.id)
-    );
+    const idsProdutosInexistentes = idDeProdutosNoPedido.filter((produtoId) => {
+      return !produtosCadastrados.some(
+        (produtoCadastrado) => produtoCadastrado.id === produtoId
+      );
+    });
 
     if (idsProdutosInexistentes.length > 0) {
       return res.status(404).json({
-        mesnagem: "Prouto não encontrado.",
+        mesnagem: errosProduto.produtoInvalido,
         idsProdutosInexistentes,
       });
     }
@@ -43,7 +49,7 @@ const cadastrarPedido = async (req, res) => {
 
     if (estoqueInsuficiente.length > 0) {
       return res.status(404).json({
-        mensagem: "O produto não.",
+        mensagem: errosProduto.estoqueInsuficiente,
         estoqueInsuficiente,
       });
     }
@@ -58,35 +64,59 @@ const cadastrarPedido = async (req, res) => {
       valor_total,
     });
 
-    const insertPedidoProduto = produtosCadastrados.map(
-      (produtoCadastrado, i) =>
-        produtoCadastrado.id === pedido_produtos[i].produto_id
-          ? {
-              pedido_id: pedidoCadastrado[0].id,
-              produto_id: produtoCadastrado.id,
-              quantidade_produto: pedido_produtos[i].quantidade_produto,
-              valor_produto: produtoCadastrado.valor,
-            }
-          : null
-    );
+    const insertPedidoProduto = produtosCadastrados.map((produtoCadastrado) => {
+      const pedidoEncontrado = pedido_produtos.find(
+        (produto) => produtoCadastrado.id === produto.produto_id
+      );
+      return {
+        pedido_id: pedidoCadastrado[0].id,
+        produto_id: produtoCadastrado.id,
+        quantidade_produto: pedidoEncontrado.quantidade_produto,
+        valor_produto: produtoCadastrado.valor,
+      };
+    });
 
     await knex("pedido_produtos").insert(insertPedidoProduto);
 
     await Promise.all(
       pedido_produtos.map((p) => {
-        const produtoEncontrado = produtosCadastrados.find((produto)=> produto.id === p.produto_id);
-        return knex("produtos").where({ id: p.produto_id }).update({
-          quantidade_estoque: produtoEncontrado.quantidade_estoque - p.quantidade_produto,
-        });
+        const produtoEncontrado = produtosCadastrados.find(
+          (produto) => produto.id === p.produto_id
+        );
+        return knex("produtos")
+          .where({ id: p.produto_id })
+          .update({
+            quantidade_estoque:
+              produtoEncontrado.quantidade_estoque - p.quantidade_produto,
+          });
       })
     );
 
+    const contexto = {
+      clienteNome: cliente.nome,
+      pedidoProdutos: insertPedidoProduto,
+      valorTotal: centavosParaReais(valor_total),
+    };
+    const html = await compiladorHtml(
+      "src/emails/templates/pedidoCadastrado.html",
+      contexto
+    );
+    const email = {
+      nomeDestinatario: cliente.nome,
+      emailDestinatario: cliente.email,
+      assunto: "Confirmação de Pedido",
+      html,
+    };
+
+    enviarEmail(email);
+
     return res.status(201).json({
-      mensagem: "Pedido cadastrado com sucesso;",
+      mensagem: sucessoPedido.pedidoCadastrado,
     });
   } catch (error) {
-    console.log(error);
-    return "errosGerais.erroServidor";
+    return res.status(404).json({
+      mensagem: errosGerais.erroServidor,
+    });
   }
 };
 

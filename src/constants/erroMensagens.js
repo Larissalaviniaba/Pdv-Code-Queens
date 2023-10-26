@@ -21,9 +21,10 @@ const errosProduto = {
   valorInvalido: "Insira um número válido para 'valor'.",
   valorEmCentavos: "O valor do produto precisa ser convertido para centavos",
   quantidadeInvalida: "Insira um número válido para 'quantidade_estoque'.",
-  produtoVinculado: "Este produto está vinculado a um pedido e não poderá ser excluído",
+  produtoVinculado:
+    "Este produto está vinculado a um pedido e não poderá ser excluído",
+  estoqueInsuficiente: "O produto não possui estoque suficiente.",
 };
-
 
 const errosUsuario = {
   usuarioErro: "Usuário não pode ser criado!",
@@ -42,10 +43,10 @@ const errosGerais = {
   erroServidor: "Erro interno do servidor.",
   camposObrigatorios: "Todos os campos devem ser informados.",
   campoInvalido: "O campo informado não pode conter espaços em branco.",
-  stringComEspaço: "Os campos não podem conter espaços no início e no final do texto.",
+  stringComEspaço:
+    "Os campos não podem conter espaços no início e no final do texto.",
   campoString: "Os campos informados precisam ser em formato de texto.",
 };
-
 
 module.exports = {
   errosGerais,

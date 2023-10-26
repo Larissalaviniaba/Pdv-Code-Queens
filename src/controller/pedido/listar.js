@@ -1,5 +1,5 @@
 const knex = require("knex");
-const { errosGerais, errosCliente } = require("../constants/erroMensagens");
+const { errosGerais, errosCliente } = require("../../constants/erroMensagens");
 
 
 
