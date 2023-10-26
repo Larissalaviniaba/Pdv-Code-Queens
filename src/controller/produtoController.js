@@ -1,4 +1,5 @@
-const knex = require("../conexaoBanco");
+const knex = require("../config/knexConfig");
+
 const {
   errosGerais,
   errosCategoria,
@@ -32,7 +33,8 @@ const listarProdutos = async (req, res) => {
           "produtos.quantidade_estoque as produtos_quantidade",
           "produtos.valor as produtos_valor",
           "categorias.id as categoria_id",
-          "categorias.descricao as categoria"
+          "categorias.descricao as categoria",
+          "produtos.produto_imagem as produto_imagem"
         )
         .orderBy("produtos.id", "asc");
 
@@ -42,10 +44,12 @@ const listarProdutos = async (req, res) => {
           descricao: item.produtos_descricao,
           quantidade: item.produtos_quantidade,
           valor: centavosParaReais(item.produtos_valor),
+          produto_imagem: item.produto_imagem,
           categoria: {
             id: item.categoria_id,
             descricao: item.categoria,
           },
+          
         },
       }));
 
@@ -59,7 +63,8 @@ const listarProdutos = async (req, res) => {
           "produtos.quantidade_estoque as produtos_quantidade",
           "produtos.valor as produtos_valor",
           "categorias.id as categoria_id",
-          "categorias.descricao as categoria"
+          "categorias.descricao as categoria",
+          "produtos.produto_imagem as produto_imagem"
         )
         .orderBy("produtos.id", "asc");
 
@@ -69,6 +74,7 @@ const listarProdutos = async (req, res) => {
           descricao: item.produtos_descricao,
           quantidade: item.produtos_quantidade,
           valor: centavosParaReais(item.produtos_valor),
+          produto_imagem: item.produto_imagem,
           categoria: {
             id: item.categoria_id,
             descricao: item.categoria,
@@ -111,7 +117,8 @@ const detalharProdutos = async (req, res) => {
         "produtos.quantidade_estoque as produtos_quantidade",
         "produtos.valor as produtos_valor",
         "categorias.id as categoria_id",
-        "categorias.descricao as categoria"
+        "categorias.descricao as categoria",
+        "produtos.produto_imagem as produto_imagem",
       )
       .first();
 
@@ -121,6 +128,7 @@ const detalharProdutos = async (req, res) => {
         descricao: detalhar.produtos_descricao,
         quantidade: detalhar.produtos_quantidade,
         valor: centavosParaReais(detalhar.produtos_valor),
+        produto_imagem: detalhar.produto_imagem,
         categoria: {
           id: detalhar.categoria_id,
           descricao: detalhar.categoria,

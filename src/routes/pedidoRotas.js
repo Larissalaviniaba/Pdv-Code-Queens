@@ -8,7 +8,7 @@ const { cadastrarPedido } = require("../controller/pedido/cadastrar");
 const { listarPedidos } = require("../controller/pedido/listar");
 
 // rotas.use(verificarUsuarioLogado);
-rotas.post("/pedido", cadastrarPedido);
-rotas.get("/pedido", listarPedidos);
+// rotas.post("/pedido");
+// rotas.get("/pedido", listarPedidos);
 
 module.exports = rotas;
