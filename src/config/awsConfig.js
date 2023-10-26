@@ -10,4 +10,13 @@ const s3 = new aws.S3({
   },
 });
 
-module.exports = s3;
+const excluirImagem = async (path) => {
+  await s3
+    .deleteObject({
+      Bucket: process.env.BACKBLAZE_BUCKET_NAME,
+      Key: path,
+    })
+    .promise();
+};
+
+module.exports = { excluirImagem };
