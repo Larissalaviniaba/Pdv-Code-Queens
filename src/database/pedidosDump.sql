@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS pedidos;
+
 CREATE TABLE pedidos (
     id SERIAL PRIMARY KEY,
     cliente_id INT REFERENCES clientes(id),
