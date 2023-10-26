@@ -8,6 +8,9 @@ const {
 const { sucessoProduto } = require("../constants/sucessoMensagens");
 const centavosParaReais = require("../utils/centavosParaReais");
 
+const uploadImagemUtils = require("../utils/uploadImagemUtils");
+const atualizarImagem = require("../utils/updateImagemUtils");
+
 const listarProdutos = async (req, res) => {
   try {
     const { categoria_id: categoriaString } = req.query;
@@ -49,7 +52,6 @@ const listarProdutos = async (req, res) => {
             id: item.categoria_id,
             descricao: item.categoria,
           },
-          
         },
       }));
 
@@ -118,7 +120,7 @@ const detalharProdutos = async (req, res) => {
         "produtos.valor as produtos_valor",
         "categorias.id as categoria_id",
         "categorias.descricao as categoria",
-        "produtos.produto_imagem as produto_imagem",
+        "produtos.produto_imagem as produto_imagem"
       )
       .first();
 
@@ -143,105 +145,188 @@ const detalharProdutos = async (req, res) => {
     });
   }
 };
-// const cadastrarProduto = async (req, res) => {
-//   const { descricao, categoria_id, quantidade_estoque, valor } = req.body;
+const cadastrarProduto = async (req, res) => {
+  const { file } = req;
+  const { descricao, categoria_id, quantidade_estoque, valor } = req.body;
 
-//   try {
-//     const buscarCategoria = await knex("categorias")
-//       .select("id")
-//       .where({ id: categoria_id })
-//       .first();
+  try {
+    const buscarCategoria = await knex("categorias")
+      .select("id")
+      .where({ id: categoria_id })
+      .first();
 
-//     if (!buscarCategoria) {
-//       return res.status(404).json({
-//         mensagem: errosCategoria.categoriaInvalida,
-//       });
-//     }
+    if (!buscarCategoria) {
+      return res.status(404).json({
+        mensagem: errosCategoria.categoriaInvalida,
+      });
+    }
 
-//     const buscarProduto = await knex("produtos")
-//       .where({ descricao: descricao })
-//       .select("descricao", "quantidade_estoque")
-//       .first();
+    const buscarProduto = await knex("produtos")
+      .where({ descricao: descricao })
+      .select("descricao")
+      .first();
 
-//     if (buscarProduto) {
-//       return res.status(409).json({
-//         mensagem: errosProduto.produtoJaExiste,
-//       });
-//     }
+    if (buscarProduto) {
+      return res.status(409).json({
+        mensagem: "O nome do produto informado já existe no banco de dados.",
+      });
+    }
 
-//     await knex("produtos").insert({
-//       categoria_id,
-//       quantidade_estoque,
-//       valor,
-//       descricao,
-//     });
+    await knex("produtos").insert({
+      categoria_id,
+      quantidade_estoque,
+      valor,
+      descricao,
+    });
 
-//     return res.status(201).json({
-//       mensagem: sucessoProduto.produtoCadastrado,
-//     });
-//   } catch (error) {
-//     return res.status(500).json({ mensagem: errosGerais.erroServidor });
-//   }
-// };
-// const atualizarProduto = async (req, res) => {
-//   const { id } = req.params;
-//   const { descricao, categoria_id, quantidade_estoque, valor } = req.body;
+    if (file) {
+      const ultimoProdutoCadastrado = await knex("produtos")
+        .max("id as maxId")
+        .first();
+      const produtoCadastradoId = ultimoProdutoCadastrado.maxId;
 
-//   try {
-//     const buscarProduto = await knex("produtos").where({ id: id }).first();
+      const urlImagem = await uploadImagemUtils(
+        file,
+        categoria_id,
+        produtoCadastradoId
+      );
 
-//     if (!buscarProduto) {
-//       return res.status(200).json({
-//         mensagem: errosProduto.produtoInvalido,
-//       });
-//     }
+      return res.status(201).json({
+        descricao: descricao,
+        quantidade_estoque: quantidade_estoque,
+        valor: valor,
+        categoria_id: categoria_id,
+        produto_imagem: urlImagem,
+      });
+    }
 
-//     const buscarCategoria = await knex("categorias")
-//       .select("id")
-//       .where({ id: categoria_id })
-//       .first();
+    return res.status(201).json({
+      descricao: descricao,
+      quantidade_estoque: quantidade_estoque,
+      valor: valor,
+      categoria_id: categoria_id,
+    });
+  } catch (error) {
+    return res.status(500).json({ mensagem: errosGerais.erroServidor });
+  }
+};
+const atualizarProduto = async (req, res) => {
+  const { file } = req;
+  const { id } = req.params;
+  const { descricao, categoria_id, quantidade_estoque, valor } = req.body;
 
-//     if (!buscarCategoria) {
-//       return res
-//         .status(404)
-//         .json({ mensagem: errosCategoria.categoriaInvalida });
-//     }
+  try {
+    const buscarProduto = await knex("produtos").where({ id: id }).first();
 
-//     await knex("produtos").where({ id: id }).update({
-//       descricao,
-//       quantidade_estoque,
-//       valor,
-//       categoria_id,
-//     });
+    if (!buscarProduto) {
+      return res.status(200).json({ mensagem: errosProduto.produtoInvalido });
+    }
 
-//     return res.status(200).json({
-//       mensagem: sucessoProduto.produtoAtualizado,
-//     });
-//   } catch (error) {
-//     return res.status(500).json({ mensagem: errosGerais.erroServidor });
-//   }
-// };
-// const deletarProduto = async (req, res) => {
-//   try {
-//     const { id } = req.params;
+    const buscarProdutoNome = await knex("produtos")
+      .whereNot({ id: id })
+      .where({ descricao: descricao })
+      .select("descricao")
+      .first();
 
-//     const buscaProduto = await knex("produtos").where("id", id).first();
+    if (buscarProdutoNome) {
+      return res.status(409).json({
+        mensagem: "O nome do produto informado já existe no banco de dados.",
+      });
+    }
 
-//     if (!buscaProduto) {
-//       return res.status(404).json({ mensagem: errosProduto.produtoInvalido });
-//     }
+    const buscarCategoria = await knex("categorias")
+      .select("id")
+      .where({ id: categoria_id })
+      .first();
 
-//     await knex("produtos").where("id", id).del();
-//     return res.status(200).json({ mensagem: sucessoProduto.produtoDeletado });
-//   } catch (error) {
-//     return res.status(400).json({ mensagem: errosGerais.erroServidor });
-//   }
-// };
+    if (!buscarCategoria) {
+      return res
+        .status(404)
+        .json({ mensagem: errosCategoria.categoriaInvalida });
+    }
+
+    await knex("produtos").where({ id: id }).update({
+      descricao,
+      quantidade_estoque,
+      valor,
+      categoria_id,
+    });
+
+    if (file) {
+      const imagemCadastrada = await knex("produtos")
+        .select("produto_imagem")
+        .where({ id: id })
+        .first();
+
+      if (!imagemCadastrada) {
+        const urlImagem = await uploadImagemUtils(file, categoria_id, id);
+
+        const produtoAtualizado = await knex("produtos")
+          .update({ produto_imagem: urlImagem })
+          .where({ id: produtoId })
+          .returning("*");
+
+        const { id: _, ...produtoAtualizadoSemId } = produtoAtualizado[0];
+
+        return res.status(200).json(produtoAtualizadoSemId);
+      } else {
+        const urlNovaImagem = await atualizarImagem(file, categoria_id, id);
+
+        const produtoAtualizado = await knex("produtos")
+          .update({ produto_imagem: urlNovaImagem })
+          .where({ id })
+          .returning("*");
+
+        const { id: _, ...produtoAtualizadoSemId } = produtoAtualizado[0];
+
+        return res.status(200).json(produtoAtualizadoSemId);
+      }
+    }
+
+    return res.status(200).json({
+      descricao: descricao,
+      quantidade_estoque: quantidade_estoque,
+      valor: valor,
+      categoria_id: categoria_id,
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ mensagem: errosGerais.erroServidor });
+  }
+};
+const deletarProduto = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const buscarProduto = await knex("produtos").where({ id: id }).first();
+
+    if (!buscarProduto) {
+      return res.status(200).json({
+        mensagem: errosProduto.produtoInvalido,
+      });
+    }
+
+    const pedidosComProduto = await knex("pedido_produtos")
+      .select("pedido_id")
+      .where({ produto_id: id });
+
+    if (pedidosComProduto.length > 0) {
+      return res.status(200).json({ mensagem: errosProduto.produtoVinculado });
+    }
+
+    await deletarImagem(id);
+
+    await knex("produtos").where({ id: id }).del();
+
+    return res.status(200).json({ mensagem: sucessoProduto.produtoDeletado });
+  } catch (error) {
+    return res.status(500).json({ mensagem: errosGerais.erroServidor });
+  }
+};
 
 module.exports = {
   listarProdutos,
   detalharProdutos,
-  // cadastrarProduto,
-  // atualizarProduto,
-  // deletarProduto,
+  cadastrarProduto,
+  atualizarProduto,
+  deletarProduto,
 };

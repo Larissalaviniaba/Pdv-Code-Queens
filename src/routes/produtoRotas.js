@@ -7,19 +7,28 @@ const validarRequisicao = require("../middleware/validarRequisicaoMiddleware");
 const verificarUsuarioLogado = require("../middleware/autenticacaoMiddleware");
 
 const {
-  listarProdutos,
+  cadastrarProduto,
+  atualizarProduto,
+  deletarProduto,
   detalharProdutos,
+  listarProdutos,
 } = require("../controller/produtoController");
 
-const { cadastrarProduto } = require("../controller/produto/cadastrar");
-const { atualizarProduto } = require("../controller/produto/atualizar");
-const deletarProduto = require("../controller/produto/deletar");
-
-// rotas.use(verificarUsuarioLogado);
-rotas.post("/produto", multer.single("produto_imagem"), cadastrarProduto);
+rotas.use(verificarUsuarioLogado);
+rotas.post(
+  "/produto",
+  multer.single("produto_imagem"),
+  validarRequisicao(produtoSchema),
+  cadastrarProduto
+);
 rotas.get("/produto", listarProdutos);
 rotas.get("/produto/:id", detalharProdutos);
-rotas.put("/produto/:id", multer.single("produto_imagem"), atualizarProduto);
+rotas.put(
+  "/produto/:id",
+  multer.single("produto_imagem"),
+  validarRequisicao(produtoSchema),
+  atualizarProduto
+);
 rotas.delete("/produto/:id", deletarProduto);
 
 module.exports = rotas;

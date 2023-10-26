@@ -2,7 +2,7 @@ const joi = require("joi");
 const {
   errosGerais,
   errosCliente,
-  errosUsuario,
+  errosUsuario
 } = require("../constants/erroMensagens");
 
 const clienteSchema = joi.object({
