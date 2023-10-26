@@ -208,6 +208,7 @@ const cadastrarProduto = async (req, res) => {
       categoria_id: categoria_id,
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ mensagem: errosGerais.erroServidor });
   }
 };
