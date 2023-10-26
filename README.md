@@ -63,7 +63,12 @@ Nesse projeto API REST - PDV é possível:
     - Listar Clientes;
     - Detalhar Cliente por ID.
   
-- Sprint 03: Em breve.
+- Sprint 03:
+  - Todas as funcionalidades (endpoints) dessa sprint exigem o token de autenticação do usuário logado.
+    - Cadastrar Pedidos;
+    - Listar Pedidos;
+    - Aprimorar cadastro/atualização de produto para incluir imagens no banco de dados;
+    - Melhorar exclusão de produto (eliminar imagem do banco de dados).
 
 ## ▶️ Como executar o projeto
 
