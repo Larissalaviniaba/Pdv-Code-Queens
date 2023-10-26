@@ -172,13 +172,6 @@ const cadastrarProduto = async (req, res) => {
       });
     }
 
-    await knex("produtos").insert({
-      categoria_id,
-      quantidade_estoque,
-      valor,
-      descricao,
-    });
-
     if (file) {
       const ultimoProdutoCadastrado = await knex("produtos")
         .max("id as maxId")
@@ -190,6 +183,14 @@ const cadastrarProduto = async (req, res) => {
         categoria_id,
         produtoCadastradoId
       );
+
+      await knex("produtos").insert({
+        categoria_id,
+        quantidade_estoque,
+        valor,
+        descricao,
+        produto_imagem: urlImagem,
+      });
 
       return res.status(201).json({
         descricao: descricao,
