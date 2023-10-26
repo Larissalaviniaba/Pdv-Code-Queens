@@ -24,7 +24,7 @@
 </h4>
 
 <p align="center">
-	<img alt="Status Em Desenvolvimento" src="https://img.shields.io/badge/STATUS-EM%20DESENVOLVIMENTO-red">
+	<img alt="Status Em Desenvolvimento" src="https://img.shields.io/badge/STATUS-%20CONCLUÍDO-green">
 </p>
 
 ## 🎲 Demonstração da Aplicação
@@ -182,7 +182,16 @@ As responsabilidades das integrantes em cada uma das sprints foram:
 - [Poliana Santos](https://www.linkedin.com/in/polianams/): ㅤ ㅤ Encarregada de delinear o escopo da segunda sprint do projeto, bem como ajudar no desenvolvimento dos schemas das rotas de produtos e clientes. Responsável por otimizar os arquivos de mensagens de erro e sucesso, em conformidade com as diretrizes estabelecidas. Além disso, encarregada de fortalecer consistentemente os padrões de clean code em toda a arquitetura da aplicação. Adicionalmente, assumiu a responsabilidade pela concepção e implementação das rotas de cadastro e atualização de produtos.
   
 ### 3. Terceira Sprint:
-- Em breve.
+
+- [Aline Lombardi](https://www.linkedin.com/in/aline-lombardi/): ㅤ ㅤEncarregada de implementar o endpoint de atualizar e deletar produto, bem como de contribuir para a definição do escopo do projeto da terceira sprint garantindo uma compreensão abrangente das necessidades do sistema;
+
+- [Ariel Sena](https://www.linkedin.com/in/arielsena27/):ㅤ ㅤ ㅤ ㅤEncarregada de estabelecer a estrutura do banco de dados;
+
+- [Karla Gonçalves](https://www.linkedin.com/in/karla-goncalves-s/):ㅤ ㅤEncarregada de implementar a rota para listar pedidos;
+
+- [Larissa Lavínia](https://www.linkedin.com/in/larissalaviniaba/):ㅤㅤㅤEncarregada de implementar os endpoints para a funcionalidade de cadastro de pedidos, ao mesmo tempo em que aprimorou os schemas relacionados à rota de cadastro de pedidos. Responsável por otimizar os recursos dos arquivos de mensagens de erro e sucesso, seguindo as diretrizes estabelecidas. Além disso, contribuiu significativamente a elaboração do escopo do projeto na terceira sprint e o aprimoramento dos padrões de clean code em todo o servidor;
+
+- [Poliana Santos](https://www.linkedin.com/in/polianams/): ㅤ ㅤ Encarregada de delinear o escopo da terceira sprint do projeto, bem como ajudar no desenvolvimento dos schemas das rotas de cadastro de pedidos. Além disso, encarregada de fortalecer consistentemente os padrões de clean code em toda a arquitetura da aplicação. Adicionalmente, contribuiu para a elaboração das rotas de cadastro, atualização e exclusão de produtos.
 
 ## 📝 Licença
 
