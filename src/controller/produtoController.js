@@ -168,7 +168,7 @@ const cadastrarProduto = async (req, res) => {
 
     if (buscarProduto) {
       return res.status(409).json({
-        mensagem: "O nome do produto informado já existe no banco de dados.",
+        mensagem: errosProduto.produtoJaExiste,
       });
     }
 
@@ -232,7 +232,7 @@ const atualizarProduto = async (req, res) => {
 
     if (buscarProdutoNome) {
       return res.status(409).json({
-        mensagem: "O nome do produto informado já existe no banco de dados.",
+        mensagem: errosProduto.produtoJaExiste,
       });
     }
 

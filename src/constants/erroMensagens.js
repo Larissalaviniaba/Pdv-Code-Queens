@@ -6,7 +6,8 @@ const errosPedido = {
   clienteInvalido: "Insira um ID válido para 'cliente_id'.",
   produtoInvalido: "Insira um ID válido para 'produto_id'.",
   quantidadeInvalida: "Insira um número válido para 'quantidade_produto'.",
-  quantidadeMinima: "É necessário pelo menos 1 produto para realizar o pedido."
+  quantidadeMinima: "É necessário pelo menos 1 produto para realizar o pedido.",
+  pedidoInexistente: "Não há pedidos para o 'cliente_id' informado.",
 };
 
 const errosCliente = {
@@ -62,5 +63,5 @@ module.exports = {
   errosProduto,
   errosCliente,
   errosCategoria,
-  errosPedido
+  errosPedido,
 };
