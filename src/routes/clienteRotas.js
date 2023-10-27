@@ -12,7 +12,7 @@ const validarRequisicao = require("../middleware/validarRequisicaoMiddleware");
 const verificarUsuarioLogado = require("../middleware/autenticacaoMiddleware");
 const validarEnderecoCompleto = require("../middleware/enderecoCompletoMiddleware");
 
-// rotas.use(verificarUsuarioLogado)
+rotas.use(verificarUsuarioLogado)
 rotas.post("/cliente", validarRequisicao(clienteSchema), validarEnderecoCompleto, cadastrarCliente);
 rotas.get("/cliente/:id", detalharCliente);
 rotas.get("/cliente", listarClientes);

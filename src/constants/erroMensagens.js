@@ -2,6 +2,14 @@ const errosCategoria = {
   categoriaInvalida: "A categoria informada não existe.",
 };
 
+const errosPedido = {
+  clienteInvalido: "Insira um ID válido para 'cliente_id'.",
+  produtoInvalido: "Insira um ID válido para 'produto_id'.",
+  quantidadeInvalida: "Insira um número válido para 'quantidade_produto'.",
+  quantidadeMinima: "É necessário pelo menos 1 produto para realizar o pedido.",
+  pedidoInexistente: "Não há pedidos para o 'cliente_id' informado.",
+};
+
 const errosCliente = {
   emailJaExiste: "O e-mail já existe na nossa base de dados.",
   cpfJaExiste: "O cpf já existe na nossa base de dados.",
@@ -21,13 +29,10 @@ const errosProduto = {
   valorInvalido: "Insira um número válido para 'valor'.",
   valorEmCentavos: "O valor do produto precisa ser convertido para centavos",
   quantidadeInvalida: "Insira um número válido para 'quantidade_estoque'.",
+  produtoVinculado:
+    "Este produto está vinculado a um pedido e não poderá ser excluído",
+  estoqueInsuficiente: "O produto não possui estoque suficiente.",
 };
-
-const errosPedidos = {
-  pedidoInexistente: "O ID do cliente informado não tem pedido cadastrado",
-
-
-}
 
 const errosUsuario = {
   usuarioErro: "Usuário não pode ser criado!",
@@ -48,9 +53,8 @@ const errosGerais = {
   campoInvalido: "O campo informado não pode conter espaços em branco.",
   stringComEspaço:
     "Os campos não podem conter espaços no início e no final do texto.",
-    campoString: "Os campos inormados precisam ser em formato de texto."
+  campoString: "O campos informados precisam ser em formato de texto.",
 };
-
 
 module.exports = {
   errosGerais,
@@ -59,5 +63,5 @@ module.exports = {
   errosProduto,
   errosCliente,
   errosCategoria,
-  errosPedidos
+  errosPedido,
 };

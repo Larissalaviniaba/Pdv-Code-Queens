@@ -1,4 +1,4 @@
-const knex = require("../conexaoBanco");
+const knex = require("../config/knexConfig");
 
 const { errosGerais, errosCliente } = require("../constants/erroMensagens");
 const { sucessoCliente } = require("../constants/sucessoMensagens");
@@ -47,7 +47,7 @@ const detalharCliente = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ mensagem: errosGerais.erroServidor });
   }
-}
+};
 const cadastrarCliente = async (req, res) => {
   const { nome, email, cpf, cep, rua, numero, bairro, cidade, estado } =
     req.body;

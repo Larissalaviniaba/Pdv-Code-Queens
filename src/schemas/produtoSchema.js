@@ -19,6 +19,7 @@ const produtoSchema = joi.object({
     "number.positive": errosProduto.valorInvalido,
   }),
   descricao: joi.string().trim().required().messages({
+    "string.base": errosGerais.campoString,
     "any.required": errosGerais.camposObrigatorios,
     "string.empty": errosGerais.camposObrigatorios,
     "string.trim": errosGerais.stringComEspaço,
