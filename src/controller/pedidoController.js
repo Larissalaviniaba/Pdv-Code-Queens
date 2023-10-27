@@ -6,6 +6,7 @@ const {
   errosGerais,
   errosCliente,
   errosProduto,
+  errosPedido,
 } = require("../constants/erroMensagens");
 const { sucessoPedido } = require("../constants/sucessoMensagens");
 
@@ -38,7 +39,7 @@ const cadastrarPedido = async (req, res) => {
 
     if (idsProdutosInexistentes.length > 0) {
       return res.status(404).json({
-        mesnagem: errosProduto.produtoInvalido,
+        mensagem: errosProduto.produtoInvalido,
         idsProdutosInexistentes,
       });
     }
@@ -135,8 +136,7 @@ const listarPedidos = async (req, res) => {
 
       if (!encontrarCliente) {
         return res.status(404).json({
-          mensagem:
-            "ID do cliente não encontrado -- errosCategoria.idInexistente",
+          mensagem: errosCliente.idInexistente,
         });
       }
     }
@@ -163,7 +163,7 @@ const listarPedidos = async (req, res) => {
 
     if (resultado.length === 0) {
       return res.status(404).json({
-        mensagem: "Não há pedidos para o cliente ID fornecido",
+        mensagem: errosPedido.pedidoInexistente,
       });
     }
 
@@ -196,6 +196,7 @@ const listarPedidos = async (req, res) => {
         valor_produto: item.valor_produto,
       });
     }
+
     return res.status(200).json(resultadoOrganizado);
   } catch (error) {
     return res.status(500).json({
